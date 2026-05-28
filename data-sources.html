@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Data Sources — PropertySight</title>
+  <meta name="description" content="Where PropertySight's property data comes from — county records, federal data, mapping providers, and licensed property-data partners." />
+  <link rel="icon" type="image/png" href="assets/propertysight_icon.png" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .doc {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 72px 24px 96px;
+    }
+    .doc-head h1 {
+      font-size: clamp(36px, 5vw, 52px);
+      font-weight: 700;
+      letter-spacing: -1px;
+      line-height: 1.05;
+      margin: 0;
+      text-wrap: balance;
+    }
+    .doc-head h1 .accent { color: var(--accent); }
+    .doc-head .lead {
+      margin-top: 18px;
+      font-size: 17px;
+      line-height: 1.6;
+      color: var(--fg-muted);
+      max-width: 640px;
+    }
+    .doc .back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      color: var(--fg-muted);
+      text-decoration: none;
+      margin-bottom: 28px;
+    }
+    .doc .back:hover { color: var(--fg); }
+
+    .source-list {
+      margin-top: 48px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .source {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      padding: 26px 28px;
+      box-shadow: var(--shadow-card);
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      gap: 22px;
+      align-items: start;
+    }
+    @media (max-width: 640px) {
+      .source { grid-template-columns: 1fr; gap: 14px; padding: 22px; }
+    }
+    .source-ic {
+      width: 48px; height: 48px;
+      border-radius: 12px;
+      background: var(--accent-soft);
+      border: 1px solid rgba(91,141,239,0.25);
+      display: inline-flex; align-items: center; justify-content: center;
+      color: var(--accent);
+    }
+    .source-head {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
+    }
+    .source-title {
+      font-size: 19px;
+      font-weight: 700;
+      letter-spacing: -0.2px;
+      color: var(--fg);
+      margin: 0;
+    }
+    .source-kind {
+      display: inline-flex;
+      align-items: center;
+      padding: 3px 10px;
+      border-radius: 9999px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+      background: var(--accent-soft);
+      border: 1px solid rgba(91,141,239,0.35);
+      color: var(--accent);
+    }
+    .source-kind.public {
+      background: rgba(76,175,80,0.12);
+      border-color: rgba(76,175,80,0.4);
+      color: #2f7a33;
+    }
+    .source-body {
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--fg-muted);
+      margin: 0 0 14px;
+    }
+    .source-fields {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .source-fields li {
+      font-size: 12px;
+      font-weight: 500;
+      padding: 4px 10px;
+      border-radius: 9999px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--fg-muted);
+    }
+
+    .doc-note {
+      margin-top: 56px;
+      padding: 24px 26px;
+      background: var(--accent-soft);
+      border: 1px solid rgba(91,141,239,0.3);
+      border-radius: var(--r-md);
+    }
+    .doc-note h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--fg);
+      margin: 0 0 6px;
+      letter-spacing: -0.1px;
+    }
+    .doc-note p {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--fg-muted);
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a class="nav-brand" href="index.html">
+        <img src="assets/propertysight_icon.png" alt="" />
+        <span class="word">Property<span class="sight">Sight</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html#finds">Finds</a>
+        <a href="index.html#signals">Signals</a>
+        <a href="index.html#unlocks">Plans</a>
+        <a href="data-sources.html">Sources</a>
+        <a class="store-pill" href="index.html">Get the app</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="doc">
+    <a class="back" href="index.html">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="19" y1="12" x2="5" y2="12"/>
+        <polyline points="12 19 5 12 12 5"/>
+      </svg>
+      Back to home
+    </a>
+
+    <div class="doc-head">
+      <h1>Where the data <span class="accent">comes from.</span></h1>
+      <p class="lead">Every field PropertySight returns is sourced from a record you can name. No proprietary guesswork. The list below is the full set of providers we draw on, what each one contributes, and whether the source is public or licensed.</p>
+    </div>
+
+    <div class="source-list">
+
+      <!-- BatchData -->
+      <div class="source">
+        <div class="source-ic">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <ellipse cx="12" cy="5" rx="9" ry="3"/>
+            <path d="M3 5v6c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/>
+            <path d="M3 11v6c0 1.66 4.03 3 9 3s9-1.34 9-3v-6"/>
+          </svg>
+        </div>
+        <div>
+          <div class="source-head">
+            <h2 class="source-title">BatchData</h2>
+            <span class="source-kind">Licensed partner</span>
+          </div>
+          <p class="source-body">Our nationwide property and ownership data partner. BatchData consolidates county recorder and assessor records, mortgage, lien, foreclosure, permit, listing, and contact data from thousands of jurisdictions into a normalized feed. The majority of fields PropertySight returns on a scan — and every record purchased through a tier — originates with BatchData. Skip-traced phone numbers are also checked against the FTC's National Do Not Call Registry through this partnership before any contact appears in the app.</p>
+          <ul class="source-fields">
+            <li>Owner of record</li>
+            <li>Deed history</li>
+            <li>Last sale price &amp; date</li>
+            <li>Tax assessment</li>
+            <li>Estimated value</li>
+            <li>Equity &amp; loan balance</li>
+            <li>Liens &amp; NOD records</li>
+            <li>Code violations</li>
+            <li>Permit history</li>
+            <li>Recent sales comparables</li>
+            <li>Active &amp; pending listings</li>
+            <li>Owner contact (skip trace)</li>
+            <li>DNC / TCPA flag</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Federal Reserve -->
+      <div class="source">
+        <div class="source-ic">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 20h18"/>
+            <path d="M5 20V9"/><path d="M9 20V6"/>
+            <path d="M13 20V11"/><path d="M17 20V8"/>
+            <path d="M21 20V4"/>
+          </svg>
+        </div>
+        <div>
+          <div class="source-head">
+            <h2 class="source-title">Federal Reserve Economic Data (FRED)</h2>
+            <span class="source-kind public">Public data</span>
+          </div>
+          <p class="source-body">Mortgage rates, lending indices, and macro indicators that feed into equity calculations and value estimates. Refreshed against the official FRED series so your equity numbers reflect current conditions, not last quarter's.</p>
+          <ul class="source-fields">
+            <li>30-year fixed mortgage rate</li>
+            <li>Regional housing indices</li>
+            <li>Loan-to-value inputs</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Google Maps + Solar -->
+      <div class="source">
+        <div class="source-ic">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21 3 6"/>
+            <line x1="9" y1="3" x2="9" y2="18"/>
+            <line x1="15" y1="6" x2="15" y2="21"/>
+          </svg>
+        </div>
+        <div>
+          <div class="source-head">
+            <h2 class="source-title">Google Maps Platform &amp; Google Solar API</h2>
+            <span class="source-kind">Licensed</span>
+          </div>
+          <p class="source-body">Address geocoding, reverse geocoding, satellite imagery, building footprints, and place data — plus the Google Solar API for roof orientation, surface area, and annual sunlight data. When you point your phone at a building, Google's geocoder is what turns your GPS, bearing, and image into a candidate address for confirmation.</p>
+          <ul class="source-fields">
+            <li>Address geocoding</li>
+            <li>Reverse geocoding from GPS</li>
+            <li>Satellite imagery</li>
+            <li>Building footprints</li>
+            <li>Roof orientation &amp; area</li>
+            <li>Annual sunlight (kWh / m²)</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- removed: Recent sales card (folded into BatchData) -->
+
+      <!-- removed: DNC card (folded into BatchData) -->
+
+    </div>
+
+    <div class="doc-note">
+      <h3>Refunded if unverified.</h3>
+      <p>When a tier is purchased and the underlying record cannot be confirmed, your credit is returned automatically — with a note on which source came up empty. The data is only as good as the records behind it, and we will not pretend otherwise.</p>
+    </div>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-meta" style="margin-top:0;border-top:0;padding-top:0;">
+        <span>© 2026 PropertySight. All rights reserved.</span>
+        <span>propertysightapp.com</span>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

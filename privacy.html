@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — PropertySight</title>
+  <link rel="icon" type="image/png" href="assets/propertysight_icon.png" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .doc {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 56px 24px 96px;
+    }
+    .doc-head h1 {
+      font-size: clamp(32px, 4.4vw, 44px);
+      font-weight: 700;
+      letter-spacing: -0.8px;
+      line-height: 1.05;
+      margin: 0 0 6px;
+    }
+    .doc .updated {
+      color: var(--fg-faint);
+      font-size: 13px;
+      margin: 0 0 8px;
+    }
+    .doc .lead {
+      margin-top: 28px;
+      font-size: 16px;
+      line-height: 1.65;
+      color: var(--fg);
+      text-wrap: pretty;
+    }
+    .doc h2 {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      color: var(--fg);
+      margin: 56px 0 14px;
+      padding-top: 28px;
+      border-top: 1px solid var(--border);
+    }
+    .doc h3 {
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: -0.1px;
+      color: var(--fg);
+      margin: 28px 0 10px;
+    }
+    .doc p {
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--fg);
+      margin: 0 0 14px;
+    }
+    .doc ul {
+      padding-left: 0;
+      list-style: none;
+      margin: 0 0 14px;
+    }
+    .doc li {
+      position: relative;
+      padding-left: 22px;
+      margin-bottom: 9px;
+      font-size: 15px;
+      line-height: 1.65;
+      color: var(--fg-muted);
+    }
+    .doc li::before {
+      content: '';
+      position: absolute;
+      left: 4px; top: 11px;
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      opacity: 0.55;
+    }
+    .doc li strong { color: var(--fg); font-weight: 600; }
+    .doc strong { color: var(--fg); }
+    .doc a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .doc a:hover { text-decoration: underline; }
+    .doc code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.88em;
+      padding: 1px 6px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      color: var(--fg);
+    }
+    .doc em { color: var(--fg-muted); }
+
+    /* Callout used in §1 */
+    .doc .callout {
+      background: var(--accent-soft);
+      border: 1px solid rgba(91,141,239,0.3);
+      border-left: 3px solid var(--accent);
+      padding: 14px 18px;
+      border-radius: 8px;
+      margin: 18px 0;
+    }
+
+    /* §9.1 matrix table */
+    .privacy-matrix-wrap {
+      overflow-x: auto;
+      margin: 18px 0 14px;
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      background: var(--surface);
+    }
+    table.privacy-matrix {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+    table.privacy-matrix th,
+    table.privacy-matrix td {
+      border-bottom: 1px solid var(--border);
+      border-right: 1px solid var(--border);
+      padding: 12px 14px;
+      text-align: left;
+      vertical-align: top;
+      color: var(--fg-muted);
+    }
+    table.privacy-matrix th:last-child,
+    table.privacy-matrix td:last-child { border-right: 0; }
+    table.privacy-matrix tr:last-child td { border-bottom: 0; }
+    table.privacy-matrix th {
+      background: var(--bg);
+      font-weight: 600;
+      color: var(--fg);
+      font-size: 11px;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+    }
+    table.privacy-matrix td strong { color: var(--fg); font-weight: 600; }
+    table.privacy-matrix em { font-style: normal; color: var(--accent); font-weight: 600; }
+
+    .doc .back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      color: var(--fg-muted);
+      text-decoration: none;
+      margin-bottom: 28px;
+    }
+    .doc .back:hover { color: var(--fg); }
+
+    .doc-toc {
+      margin: 28px 0 8px;
+      padding: 18px 22px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+    }
+    .doc-toc-title {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.8px;
+      color: var(--fg-faint);
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .doc-toc ol {
+      columns: 2;
+      column-gap: 32px;
+      list-style: decimal inside;
+      padding: 0;
+      margin: 0;
+      color: var(--fg-muted);
+    }
+    .doc-toc li {
+      padding: 0;
+      margin: 4px 0;
+      font-size: 13px;
+      list-style: decimal inside;
+    }
+    .doc-toc li::before { display: none; }
+    .doc-toc a { color: var(--fg-muted); }
+    .doc-toc a:hover { color: var(--fg); text-decoration: none; }
+    @media (max-width: 640px) {
+      .doc-toc ol { columns: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a class="nav-brand" href="index.html">
+        <img src="assets/propertysight_icon.png" alt="" />
+        <span class="word">Property<span class="sight">Sight</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html#finds">Finds</a>
+        <a href="index.html#signals">Signals</a>
+        <a href="data-sources.html">Sources</a>
+        <a href="privacy.html">Privacy</a>
+        <a class="store-pill" href="index.html">Get the app</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="doc">
+
+    <a class="back" href="index.html">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="19" y1="12" x2="5" y2="12"/>
+        <polyline points="12 19 5 12 12 5"/>
+      </svg>
+      Back to home
+    </a>
+
+    <div class="doc-head">
+      <h1>Privacy Policy</h1>
+      <p class="updated">Last updated: May 28, 2026</p>
+    </div>
+
+    <p class="lead">This Privacy Policy describes how PropertySight ("we", "our", or "us") collects, uses, and shares information when you use the PropertySight mobile application (the "App"). PropertySight is a tool intended for use by U.S. real estate professionals to capture, organize, and act on property leads. We do not independently verify license status.</p>
+
+    <div class="doc-toc">
+      <div class="doc-toc-title">Contents</div>
+      <ol>
+        <li><a href="#s1">Information We Collect</a></li>
+        <li><a href="#s2">How We Use Your Information</a></li>
+        <li><a href="#s3">Third-Party Service Providers</a></li>
+        <li><a href="#s4">Sharing Properties With Other Agents</a></li>
+        <li><a href="#s5">Sharing for Legal Reasons</a></li>
+        <li><a href="#s6">Skip-Trace and TCPA Compliance</a></li>
+        <li><a href="#s7">Data Retention</a></li>
+        <li><a href="#s8">Your Rights</a></li>
+        <li><a href="#s9">Additional Disclosures</a></li>
+        <li><a href="#s10">International Data Transfers</a></li>
+        <li><a href="#s11">Children's Privacy</a></li>
+        <li><a href="#s12">Security</a></li>
+        <li><a href="#s13">Changes to This Policy</a></li>
+        <li><a href="#s14">Contact Us</a></li>
+      </ol>
+    </div>
+
+    <h2 id="s1">1. Information We Collect</h2>
+
+    <h3>1.1 Account information</h3>
+    <p>When you sign in with Google or Apple, we receive your name, email address, and (where provided) profile photo via the OAuth provider. We assign you a unique internal user ID. We do not receive your sign-in password.</p>
+
+    <h3>1.2 Property data you create</h3>
+    <p>When you scan or save a property, the App stores:</p>
+    <ul>
+      <li>The property's address, latitude/longitude, and your saved photos</li>
+      <li>Notes you write, links you attach, and your activity log entries (timestamped free-text)</li>
+      <li>Public-records property data we look up on your behalf (see §3)</li>
+      <li>Paid-tier unlocks you purchase (comparable sales, financials, permits, owner intel, contact information)</li>
+      <li>Tags / categories you assign</li>
+    </ul>
+
+    <h3>1.3 Skip-trace contact information (paid feature)</h3>
+    <p>When you unlock contact details for a property owner, our server retrieves phone numbers, email addresses, and related identifiers from a licensed data provider. You must affirmatively attest to a lawful basis for the lookup at the moment of unlock — see §6 for details.</p>
+    <p>We retain the contact data on your account so you do not re-pay for it, and we retain the attestation as a compliance record.</p>
+
+    <h3>1.4 Location</h3>
+    <p>The App reads your device's GPS only at the moment you initiate a scan, to identify the property in front of you. Location is sent to our server with the scan request and is stored with the resulting find. The location reading is precise (GPS-grade) when your device permission allows; you can revoke the App's location permission in your OS settings, in which case the manual address-entry / map-pin entry methods still work. We do not run background location tracking.</p>
+
+    <h3>1.5 Purchase information</h3>
+    <p>Subscriptions are processed by Apple App Store / Google Play and managed via RevenueCat. Credit-pack purchases are processed by Apple or Google. We receive a purchase token to verify the transaction and credit your account; we do not see or store your payment card details.</p>
+
+    <h3>1.6 Usage and diagnostic data</h3>
+    <p>We collect basic technical information (app version, OS version, error logs, server-side request metrics) to keep the App working. Diagnostic logs that include user-submitted addresses are stored with the street and ZIP hashed (not in plaintext) so logs can be correlated without exposing the underlying address.</p>
+    <p>PropertySight does not intentionally collect special-category personal information (health, biometric, genetic, racial/ethnic, religious, political, or trade-union data). Public-records data from licensed providers may incidentally include demographic indicators tied to property ownership; we do not infer or aggregate such indicators into user profiles.</p>
+
+    <h3>1.7 Photos and incidental content</h3>
+    <p>You are responsible for the lawful capture of any photo you upload. The App is not intended for surveillance use. When you photograph a property, please avoid capturing identifiable third parties, license plates, or minors — incidental capture may occur and you should review/crop before saving. Photos are stored on Firebase Storage and accessible only to your account (other users cannot read your photo URLs). See §7 for the 18-month aging window.</p>
+
+    <h2 id="s2">2. How We Use Your Information</h2>
+    <ul>
+      <li>To deliver the App's core features: property scanning, finds, activity log, search, photo gallery, sharing, and exports.</li>
+      <li>To manage your subscription, credit balance, and in-app purchases.</li>
+      <li>To process and deliver paid-tier unlocks (comps, financials, permits, owner intel, contact information) on your behalf.</li>
+      <li>To maintain compliance records for skip-trace lookups (§6).</li>
+      <li>To send you account notices (e.g., security or service-impacting updates). We do not send marketing emails.</li>
+      <li>To diagnose technical problems, prevent abuse, and improve the App.</li>
+      <li>To honor your data-rights requests (access, deletion, correction) under applicable U.S. state and international laws.</li>
+    </ul>
+
+    <h2 id="s3">3. Third-Party Service Providers</h2>
+    <p>We use the following providers to operate the App. Each processes data on our behalf under its own privacy and security commitments:</p>
+    <ul>
+      <li><strong>Google Firebase</strong> — authentication (Firebase Auth + Google/Apple Sign-In), Firestore (your saved finds and account data), Firebase Storage (your photos and OAuth-provided profile picture). We do not use Firebase Analytics, Crashlytics, or Remote Config.</li>
+      <li><strong>Railway</strong> — server hosting (United States).</li>
+      <li><strong>BatchData</strong> — public-records property data and skip-trace contact data. We transmit property-related query information (address components) rather than profile information about you, but property queries may themselves be considered personal information under some state privacy laws when tied to your account ID for billing/audit purposes.</li>
+      <li><strong>Google Maps Platform</strong> — geocoding, address autocomplete, and Street View tile imagery. Persistent identifiers (a per-installation API key) are sent with each request.</li>
+      <li><strong>Google Sunroof, FEMA, and other public/commercial data sources</strong> — to enrich properties with solar potential, flood-zone, and similar context. We may add, remove, or change enrichment providers without separate notice; the categories of data they receive (property address only) do not change.</li>
+      <li><strong>Apple App Store / Google Play</strong> — processing in-app purchases.</li>
+      <li><strong>RevenueCat</strong> — subscription state management.</li>
+    </ul>
+    <p>Property and enrichment data from third-party providers may be incomplete, outdated, or inaccurate. You should independently verify any data point relied upon for business decisions.</p>
+    <p>We do not sell your personal information. We also do not share your personal information for cross-context behavioral advertising as defined by U.S. state privacy laws (including the California Consumer Privacy Act as amended by the CPRA).</p>
+
+    <h2 id="s4">4. Sharing Properties With Other Agents</h2>
+    <p>You can generate a one-time-use share link for a saved find. When another PropertySight user opens that link and accepts the share, a copy of the find is created on their account.</p>
+    <p>Shared content includes the address, our cached public-records property data, your enrichment data, and optionally your photos and links if you explicitly include them. <strong>Your private notes and your activity log are never shared.</strong> Paid-tier unlocks (comps, financials, permits, owner intel, contact information) are also never shared — the recipient must pay to unlock those themselves.</p>
+    <p>Each accepted share writes an attribution note (currently rendered as "Shared by another agent on YYYY-MM-DD") and a <code>sharedFrom</code> record containing the sender's internal account ID and a timestamp to the recipient's scan, so the recipient can see where the find came from. The sender's display name is not transferred unless the sender has explicitly set one (a feature currently disabled in the App).</p>
+    <p>Share links are designed to expire after 30 days and to be accepted by a single recipient. The <code>sharedFrom</code> record we write to the recipient's scan is an internal account identifier; while we do not display your account ID to the recipient, the existence of the record is operational metadata used to attribute the find and to support future audit needs.</p>
+
+    <h2 id="s5">5. Sharing for Legal Reasons</h2>
+    <p>We may disclose information if required by law, in response to valid legal process, or to protect the rights, property, or safety of our users, our company, or the public.</p>
+
+    <h2 id="s6">6. Skip-Trace and TCPA Compliance</h2>
+    <p>U.S. federal law (the Telephone Consumer Protection Act, "TCPA") and various state laws restrict the circumstances under which consumer phone numbers may be obtained, retained, or contacted for marketing purposes. When you initiate a skip-trace contact unlock in PropertySight, you must attest to one of the following lawful bases:</p>
+    <ul>
+      <li><strong>Established business relationship</strong> with the property owner;</li>
+      <li><strong>Express consent</strong> previously obtained from the property owner; or</li>
+      <li><strong>Public-records use only</strong> — you intend to use the data for property-records research, not for telemarketing or text-message campaigns.</li>
+    </ul>
+    <p>We record the attestation, your account ID, and the timestamp of each contact unlock as a compliance ledger. You are solely responsible for ensuring that your use of contact information complies with the TCPA, the Telemarketing Sales Rule, the National Do Not Call Registry, and any applicable state laws. PropertySight is not a service for sending automated calls or text messages.</p>
+    <p>Prohibited uses. You may not use PropertySight or any data accessed through it to:</p>
+    <ul>
+      <li>Conduct mass marketing, robocalling, automated calling, SMS marketing, or any other communications prohibited by the TCPA, the Telemarketing Sales Rule, the National Do Not Call Registry, or applicable state law.</li>
+      <li>Build, train, or augment your own consumer-data product using PropertySight contact data.</li>
+      <li>Resell, redistribute, or otherwise transfer PropertySight contact data to a third party.</li>
+      <li>Initiate communications based on PropertySight contact data without a lawful basis (an established business relationship, express consent, or a recognized exemption).</li>
+    </ul>
+    <p>We reserve the right to suspend or terminate accounts engaged in suspected unlawful contact activity, and we may decline to provide contact-data unlocks to accounts with a history of attestation patterns inconsistent with lawful use. Contact data may be incomplete, outdated, or inaccurate; you must independently verify any phone number, email address, or other identifier before initiating communication. PropertySight is a research tool, not a dialer or marketing automation platform.</p>
+
+    <h2 id="s7">7. Data Retention</h2>
+    <p>We retain different categories of data for different periods:</p>
+    <ul>
+      <li><strong>Retained for as long as your account is active</strong> (and you do not delete the find): your saved finds, including address, property data, notes, links, activity entries, tags, and paid-tier unlocks you have purchased. PropertySight is designed as a long-term prospecting log; we tie retention to your account lifecycle rather than to an absolute calendar window. Closing your account triggers deletion per §8.</li>
+      <li><strong>Skip-trace contact data:</strong> retained for as long as your account is active so that you do not re-pay for the same lookup. We may, in a future release of the App, introduce a configurable per-record retention window or a periodic purge for contact data that has not been re-attested or accessed. You can ask us to delete specific contact records at any time via §14.</li>
+      <li><strong>Indefinite (until you delete your account):</strong> your credit balance and credit-transaction ledger. The credit ledger is immutable for audit reasons.</li>
+      <li><strong>Automatically aged at 18 months:</strong> photos stored with your finds are removed from Firebase Storage 18 months after upload. The find itself remains; only the photo is removed.</li>
+      <li><strong>Cached with short TTLs:</strong> third-party property and enrichment API responses, geocoding results, and Street View tile metadata are cached briefly so we don't re-charge you and don't re-call the upstream provider. These caches are refreshed on subsequent scans.</li>
+      <li><strong>One-time-use, auto-cleaned:</strong> share tokens expire after 30 days and are auto-deleted by a nightly job. RevenueCat webhook deduplication records are deleted after 30 days.</li>
+    </ul>
+
+    <h2 id="s8">8. Your Rights</h2>
+    <p>You can exercise the following rights directly in the App:</p>
+    <ul>
+      <li><strong>Access / portability.</strong> Export your activity log and find data via the "Export" actions on the Finds tab and on each find detail.</li>
+      <li><strong>Correction.</strong> Edit any find's notes, links, or tags directly in the App.</li>
+      <li><strong>Deletion of a single find.</strong> Use the delete action on each find.</li>
+      <li><strong>Deletion of your account.</strong> Use <em>More &gt; Delete account</em>. This permanently removes your finds, activity, photos, profile, and credit ledger. The Firebase Auth user is also deleted. Allow up to 30 days for the deletion to propagate through backups.</li>
+    </ul>
+    <p>To request access to data not exposed in the App, to ask questions about how we process your data, or to exercise rights granted by your state's privacy law, contact us at the address in §14. We will not discriminate against you for exercising a privacy right. See §9.2 for the full list of statutory rights, response times, and appeal mechanics by jurisdiction; see §9.1 for the structured map of personal-information categories we collect.</p>
+
+    <h2 id="s9">9. Additional Disclosures</h2>
+
+    <h3>9.1 Personal Information Categories Collected (U.S. State Law Disclosure)</h3>
+    <p>U.S. state privacy laws (including the California Consumer Privacy Act as amended by the CPRA) require us to describe the categories of personal information we collect using their enumerated taxonomy. The table below maps that taxonomy onto what PropertySight actually collects, what we use it for, and which service providers receive it. We do not sell personal information and we do not share it for cross-context behavioral advertising.</p>
+
+    <div class="privacy-matrix-wrap">
+      <table class="privacy-matrix">
+        <thead>
+          <tr>
+            <th>Category (CCPA §1798.140)</th>
+            <th>What We Collect</th>
+            <th>Source</th>
+            <th>Business Purpose</th>
+            <th>Disclosed to Service Providers</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>A. Identifiers</strong></td>
+            <td>Name, email, profile photo (via OAuth), internal user ID, IP address (server logs)</td>
+            <td>From you; from your Google or Apple sign-in; from your device</td>
+            <td>Account creation, authentication, security, audit logging</td>
+            <td>Firebase (Auth, Firestore), Railway (server)</td>
+          </tr>
+          <tr>
+            <td><strong>B. Customer records</strong> (Cal. Civ. Code §1798.80(e))</td>
+            <td>Name, email address</td>
+            <td>From you; from your OAuth provider</td>
+            <td>Account management, billing receipts, service notices</td>
+            <td>Firebase, RevenueCat</td>
+          </tr>
+          <tr>
+            <td><strong>D. Commercial information</strong></td>
+            <td>Subscription state, credit-pack purchases, paid-feature unlocks (comps, financials, permits, owner intel, contact information)</td>
+            <td>From your in-app purchases via Apple / Google</td>
+            <td>Billing, paid-feature delivery, refund processing, audit</td>
+            <td>RevenueCat, Apple App Store, Google Play, Firebase, Railway</td>
+          </tr>
+          <tr>
+            <td><strong>F. Internet or other electronic network activity</strong></td>
+            <td>App version, OS version, request logs, error logs, server-side metrics, hashed addresses in diagnostic logs</td>
+            <td>From your device; from your interactions with the App</td>
+            <td>Operating the App, security, debugging, abuse prevention</td>
+            <td>Firebase, Railway</td>
+          </tr>
+          <tr>
+            <td><strong>G. Geolocation data</strong> <em>(treated as Sensitive Personal Information under CPRA)</em></td>
+            <td>Precise GPS coordinates at the moment you initiate a scan</td>
+            <td>From your device, only when you tap Scan</td>
+            <td>Identify the property in front of you; attach lat/long to the saved find; geocoding and Street View imagery for that property</td>
+            <td>BatchData (address only, derived from lat/long), Google Maps Platform</td>
+          </tr>
+          <tr>
+            <td><strong>H. Audio, electronic, visual, thermal, olfactory, or similar information</strong></td>
+            <td>Photos you capture or import of properties</td>
+            <td>From your device, when you choose to upload</td>
+            <td>Display in your finds; optional inclusion in shares you create</td>
+            <td>Firebase Storage</td>
+          </tr>
+          <tr>
+            <td><strong>I. Professional or employment-related information</strong></td>
+            <td>Brokerage name, license number, and similar fields if you choose to enter them in your profile</td>
+            <td>From you, voluntarily</td>
+            <td>Display on shared finds where you choose to include them</td>
+            <td>Firebase</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>We do not knowingly collect categories <strong>C</strong> (protected classifications such as race, religion, age), <strong>E</strong> (biometric information), <strong>J</strong> (non-public education information), or <strong>K</strong> (inferences drawn to create a profile). Although BatchData and other public-records providers may incidentally return demographic or financial indicators tied to property ownership, we do not aggregate such indicators into user profiles.</p>
+
+    <p><strong>Sensitive personal information (CPRA §1798.140(ae)).</strong> Precise geolocation is the only category of sensitive personal information PropertySight collects. We use it solely to identify the property at your scan location and to support paid-feature lookups you initiate. We do not use it to infer characteristics about you. California residents may request that we limit the use of this sensitive PI to those purposes (see §9.2).</p>
+
+    <h3>9.2 Your Rights Under U.S. State Privacy Laws</h3>
+    <p>The following rights apply, in some form, to residents of every U.S. state with a comprehensive privacy statute currently in force or scheduled to take effect within the next twelve months. To exercise any right, contact us at <a href="mailto:privacy@propertysightapp.com">privacy@propertysightapp.com</a>.</p>
+
+    <ul>
+      <li><strong>Right to know / access</strong> the categories and specific pieces of personal information we have collected, the sources, the business purposes, and the recipients.</li>
+      <li><strong>Right to receive a portable copy</strong> of your personal information in a structured, machine-readable format.</li>
+      <li><strong>Right to delete</strong> personal information we have collected from you, subject to legally permitted exceptions (e.g., maintaining a TCPA-attestation compliance ledger required by law).</li>
+      <li><strong>Right to correct</strong> inaccurate personal information. Utah and Iowa do not require a correction right by statute; we will nonetheless honor correction requests from residents of any U.S. state on a best-effort basis.</li>
+      <li><strong>Right to opt out of "sale" or "sharing"</strong> of personal information. PropertySight does not sell or share personal information for cross-context behavioral advertising; this right is satisfied by default.</li>
+      <li><strong>Right to opt out of targeted advertising.</strong> Same — we do not engage in targeted advertising.</li>
+      <li><strong>Right to limit the use and disclosure of sensitive personal information</strong> (California only). Submit a request to limit our use of your precise geolocation to the purposes described in §9.1.</li>
+      <li><strong>Right to non-discrimination</strong> for exercising any right above.</li>
+      <li><strong>Right to appeal</strong> a denied request. Most states require an appeal mechanism; Utah and Iowa do not. We accept appeals from all U.S. residents — reply to our denial email and we will respond within the time required by your state's law (typically 45 to 60 days).</li>
+    </ul>
+
+    <p><strong>Response time.</strong> We respond to verifiable requests within 45 days of receipt and may extend by an additional 45 days where reasonably necessary and where permitted by your state's law. Iowa residents: up to 90 days under §715D.4 of the Iowa Consumer Data Protection Act, extendable by 45.</p>
+
+    <p><strong>Authorized agents.</strong> California, Colorado, and Oregon residents may submit requests through an authorized agent who provides written permission and proof of the agent's authority.</p>
+
+    <p><strong>Universal opt-out signals.</strong> We honor browser-level universal opt-out preferences (such as the Global Privacy Control signal) where they are legally recognized. Because PropertySight does not engage in sale, sharing, or targeted advertising, these signals have no practical effect on our processing today.</p>
+
+    <p><strong>State-specific additions.</strong></p>
+    <ul>
+      <li><strong>California.</strong> You may also request a list of the categories of personal information disclosed to third parties for a business purpose in the preceding 12 months. We have made disclosures only to the service providers listed in §3 and §9.1.</li>
+      <li><strong>Colorado, Connecticut, Oregon, Texas.</strong> If we engage in profiling that has legal or similarly significant effects, you may opt out — we do not engage in such profiling today.</li>
+      <li><strong>Oregon.</strong> You may obtain a list of the specific third parties to whom we have disclosed your personal information; the list mirrors §3 and §9.1.</li>
+      <li><strong>Maryland.</strong> Our practices are subject to data-minimization principles; we collect only what is necessary to operate the App's features that you use.</li>
+      <li><strong>Minnesota.</strong> You may question the result of consequential automated decision-making. We do not engage in automated decision-making with legal or similarly significant effects today.</li>
+    </ul>
+
+    <h3>9.3 Legal Bases for EEA / UK / Swiss Visitors</h3>
+    <p>PropertySight is intended for U.S. real estate agents. If you nonetheless access the App from the European Economic Area, United Kingdom, or Switzerland, we process your personal data under the following legal bases under the GDPR (or UK / Swiss equivalents):</p>
+    <ul>
+      <li><strong>Contract performance</strong> — to deliver the App's features that you have requested.</li>
+      <li><strong>Legitimate interests</strong> — to maintain security, prevent fraud, run diagnostic logs, and improve the App.</li>
+      <li><strong>Legal obligation</strong> — to retain certain compliance records (e.g., TCPA attestations, IAP receipts).</li>
+      <li><strong>Consent</strong> — for any optional processing where you have explicitly opted in. You may withdraw consent at any time.</li>
+    </ul>
+
+    <h2 id="s10">10. International Data Transfers</h2>
+    <p>Our servers are operated in the United States. If you access the App from outside the U.S., your data will be transferred to and processed in the U.S. Where required, we rely on Standard Contractual Clauses (SCCs) or equivalent mechanisms with our subprocessors. We acknowledge that U.S. data may, under specific legal-process scenarios, be subject to government-access requests; we do not voluntarily disclose user data and we comply with requests only when legally required (see §5). PropertySight is intended for licensed U.S. real estate agents, and we do not market the App to EEA/UK/Swiss consumers.</p>
+
+    <h2 id="s11">11. Children's Privacy</h2>
+    <p>PropertySight is a professional tool for licensed real estate agents and is intended for use by adults engaged in U.S. real estate. The App is not directed to anyone under 18 (under 16 in the EEA). We do not knowingly collect personal information from anyone under those ages. If you believe we have inadvertently collected such information, contact us and we will delete it.</p>
+
+    <h2 id="s12">12. Security</h2>
+    <p>We use commercially reasonable administrative, technical, and organizational safeguards to protect your data:</p>
+    <ul>
+      <li>All traffic between the App and our servers is encrypted with HTTPS / TLS 1.2 or later.</li>
+      <li>Authentication is handled by Firebase Auth (Google, Apple); we never see your sign-in password.</li>
+      <li>Data at rest in Firestore and Firebase Storage is encrypted by Google's underlying infrastructure (AES-256 envelope encryption).</li>
+      <li>Server access is restricted to engineering personnel under role-based controls; access is logged.</li>
+      <li>Each user's data is isolated at the Firestore-security-rules and Storage-rules layer — other users cannot read your finds, photos, or account profile.</li>
+    </ul>
+    <p>No system is perfectly secure. If we determine that a security incident has materially affected your personal information, we will notify you consistent with applicable law and after we have reasonably determined the scope, cause, and impact of the incident. We do not currently operate a public bug-bounty program; security researchers can email §14 to coordinate disclosure.</p>
+
+    <h2 id="s13">13. Changes to This Policy</h2>
+    <p>We may update this Privacy Policy from time to time. We will notify you of <strong>material</strong> changes by updating the "Last updated" date at the top of this page, by an in-App notice on the next launch, and where we have a current email address on file, by an email to the address you signed in with. Continued use of the App after the effective date of a material change constitutes acceptance of the revised policy.</p>
+
+    <h2 id="s14">14. Contact Us</h2>
+    <p>For the purposes of U.S. state privacy laws, PropertySight acts as a <strong>business</strong> (CCPA terminology) with respect to your account data; our subprocessors (Firebase, Railway, BatchData, Google Maps, RevenueCat, etc.) act as <strong>service providers</strong>. For the purposes of GDPR, where applicable, we are the <strong>data controller</strong> for account and platform data, and those subprocessors are our <strong>processors</strong>. You are independently responsible for your downstream use of data obtained through the App.</p>
+    <p>If you have questions about this Privacy Policy or wish to exercise any of the rights described above, please contact us:</p>
+    <p>
+      PropertySight<br />
+      Email: <a href="mailto:privacy@propertysightapp.com">privacy@propertysightapp.com</a>
+    </p>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-meta" style="margin-top:0;border-top:0;padding-top:0;">
+        <span>© 2026 PropertySight. All rights reserved.</span>
+        <span>propertysightapp.com</span>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
