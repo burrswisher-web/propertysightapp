@@ -7,6 +7,12 @@
 
 * { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; }
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 88px; /* clear the 64px sticky nav + breathing room */
+}
+/* Anchored sections clear the sticky nav when jumped to */
+section[id] { scroll-margin-top: 88px; }
 body {
   background: var(--bg);
   color: var(--fg);

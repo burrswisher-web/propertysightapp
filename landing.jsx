@@ -39,7 +39,7 @@ function Nav() {
         <div className="nav-links">
           <a href="#finds">Finds</a>
           <a href="#signals">Signals</a>
-          <a href="#unlocks">Plans</a>
+          <a href="#unlocks">Pricing</a>
           <a href="data-sources.html">Sources</a>
           <a href="privacy.html">Privacy</a>
           <a className="store-pill" href="#">Get the app</a>
@@ -595,7 +595,7 @@ function Footer() {
               <li><a href="#">Download for Android</a></li>
               <li><a href="#finds">Your Finds</a></li>
               <li><a href="#signals">Lead signals</a></li>
-              <li><a href="#unlocks">Plans</a></li>
+              <li><a href="#unlocks">Pricing</a></li>
             </ul>
           </div>
           <div>
