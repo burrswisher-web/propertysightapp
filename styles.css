@@ -128,14 +128,15 @@ a { color: inherit; }
 }
 .hero-cta-row {
   margin-top: 28px;
-  display: inline-flex;
+  display: flex;
   flex-wrap: wrap;
   gap: 10px;
   align-items: center;
 }
 .hero-meta {
-  margin-top: 18px;
-  display: inline-flex;
+  margin-top: 32px;
+  display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 10px;
   font-size: 13px;

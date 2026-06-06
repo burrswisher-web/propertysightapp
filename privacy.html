@@ -220,10 +220,10 @@
 
     <div class="doc-head">
       <h1>Privacy Policy</h1>
-      <p class="updated">Last updated: May 29, 2026</p>
+      <p class="updated">Last updated: June 7, 2026</p>
     </div>
 
-    <p class="lead">This Privacy Policy describes how PropertySight ("we", "our", or "us") collects, uses, and shares information when you use the PropertySight mobile application (the "App"). PropertySight is a tool intended for use by U.S. real estate professionals to capture, organize, and act on property leads. We do not independently verify license status.</p>
+    <p class="lead">This Privacy Policy describes how PropertySight LLC, an Indiana limited liability company ("PropertySight", "we", "our", or "us"), collects, uses, and shares information when you use the PropertySight mobile application (the "App"). PropertySight is a tool intended for use by U.S. real estate professionals to capture, organize, and act on property leads. We do not independently verify license status.</p>
 
     <div class="doc-toc">
       <div class="doc-toc-title">Contents</div>
@@ -234,7 +234,7 @@
         <li><a href="#s4">Sharing Properties With Other Agents</a></li>
         <li><a href="#s5">Sharing for Legal Reasons</a></li>
         <li><a href="#s6">Skip-Trace and TCPA Compliance</a></li>
-        <li><a href="#s7">Data Retention</a></li>
+        <li><a href="#s7">Data Retention and Sunset</a></li>
         <li><a href="#s8">Your Rights</a></li>
         <li><a href="#s9">Additional Disclosures</a></li>
         <li><a href="#s10">International Data Transfers</a></li>
@@ -276,7 +276,7 @@
     <p>PropertySight does not intentionally collect special-category personal information (health, biometric, genetic, racial/ethnic, religious, political, or trade-union data). Public-records data from licensed providers may incidentally include demographic indicators tied to property ownership; we do not infer or aggregate such indicators into user profiles.</p>
 
     <h3>1.7 Photos and incidental content</h3>
-    <p>You are responsible for the lawful capture of any photo you upload. The App is not intended for surveillance use. When you photograph a property, please avoid capturing identifiable third parties, license plates, or minors — incidental capture may occur and you should review/crop before saving. Photos are stored on Firebase Storage and accessible only to your account (other users cannot read your photo URLs). See §7 for the 18-month aging window.</p>
+    <p>You are responsible for the lawful capture of any photo you upload. The App is not intended for surveillance use. When you photograph a property, please avoid capturing identifiable third parties, license plates, or minors — incidental capture may occur and you should review/crop before saving. Photos are stored on Firebase Storage and accessible only to your account (other users cannot read your photo URLs). See §7 for storage caps and retention.</p>
 
     <h2 id="s2">2. How We Use Your Information</h2>
     <ul>
@@ -329,16 +329,42 @@
     </ul>
     <p>We reserve the right to suspend or terminate accounts engaged in suspected unlawful contact activity, and we may decline to provide contact-data unlocks to accounts with a history of attestation patterns inconsistent with lawful use. Contact data may be incomplete, outdated, or inaccurate; you must independently verify any phone number, email address, or other identifier before initiating communication. PropertySight is a research tool, not a dialer or marketing automation platform.</p>
 
-    <h2 id="s7">7. Data Retention</h2>
-    <p>We retain different categories of data for different periods:</p>
+    <h2 id="s7">7. Data Retention and Sunset</h2>
+    <p>We retain different categories of data for different periods. Active subscribers keep their data for the lifetime of the account. If you cancel your subscription, or if you create an account but never subscribe, your data is governed by the sunset schedule described in §7.1 below — a long retention window followed by an in-app warning period and then permanent deletion.</p>
     <ul>
-      <li><strong>Retained for as long as your account is active</strong> (and you do not delete the find): your saved finds, including address, property data, notes, links, activity entries, tags, and paid-tier unlocks you have purchased. PropertySight is designed as a long-term prospecting log; we tie retention to your account lifecycle rather than to an absolute calendar window. Closing your account triggers deletion per §8.</li>
-      <li><strong>Skip-trace contact data:</strong> retained for as long as your account is active so that you do not re-pay for the same lookup. We do not automatically purge skip-trace contact data. Each contact record is timestamped at the moment of lookup, and the age of the record is visible in the App so you can judge freshness before relying on the data. You remain responsible under §6 for re-verifying contact information before initiating communication. You can ask us to delete specific contact records at any time via §14.</li>
-      <li><strong>Indefinite (until you delete your account):</strong> your credit balance and credit-transaction ledger. The credit ledger is immutable for audit reasons.</li>
-      <li><strong>Automatically aged at 18 months:</strong> photos stored with your finds are removed from Firebase Storage 18 months after upload. The find itself remains; only the photo is removed.</li>
+      <li><strong>Your saved finds, notes, links, activity entries, tags, and paid-tier unlocks you have purchased:</strong> retained for as long as your account is active. While you are an active subscriber, retention is tied to your account lifecycle. After your subscription lapses or if you never subscribe, retention follows the sunset schedule in §7.1. PropertySight is designed as a long-term prospecting log; we do not impose an absolute calendar window on the data of active subscribers. Closing your account at any time triggers immediate deletion per §8.</li>
+      <li><strong>Skip-trace contact data:</strong> retained on the same schedule as your finds, so you do not re-pay for the same lookup while your account is active. We do not automatically purge skip-trace contact data outside the sunset schedule. Each contact record is timestamped at the moment of lookup, and the age of the record is visible in the App so you can judge freshness before relying on the data. You remain responsible under §6 for re-verifying contact information before initiating communication. You can ask us to delete specific contact records at any time via §14.</li>
+      <li><strong>Your credit balance:</strong> retained for as long as your account is active and is removed when the account is deleted (manually or via sunset). The credit-transaction ledger may be retained in anonymized form beyond the sunset window for billing and audit purposes required by law.</li>
+      <li><strong>Photos:</strong> stored on Firebase Storage for the lifetime of your account, subject to per-plan storage caps (currently 2 GB on Basic, 8 GB on Pro, plus any storage add-ons you have purchased). When you exceed your cap, your oldest find's photos are removed first to bring you back under the cap; the find itself is preserved. If you downgrade from Pro to Basic and end up over the new Basic cap, you get a 30-day grace period before eviction begins. Account-level deletion (manual via §8 or via the sunset schedule in §7.1) removes all photos as part of the account deletion.</li>
       <li><strong>Cached with short TTLs:</strong> third-party property and enrichment API responses, geocoding results, and Street View tile metadata are cached briefly so we don't re-charge you and don't re-call the upstream provider. These caches are refreshed on subsequent scans.</li>
       <li><strong>One-time-use, auto-cleaned:</strong> share tokens expire after 30 days and are auto-deleted by a nightly job. RevenueCat webhook deduplication records are deleted after 30 days.</li>
     </ul>
+
+    <h3>7.1 Account Sunset for Non-Subscribers</h3>
+    <p>If you cancel your subscription, or if you never subscribe, we retain your saved finds, notes, photos, and account data on the following schedule:</p>
+    <ul>
+      <li><strong>Former subscribers:</strong> 36 months from the date your subscription ended. Re-subscribing at any point during this window resets the retention clock; on the next lapse, a fresh 36-month window begins.</li>
+      <li><strong>Trial-only users (you created an account but never subscribed):</strong> 6 months from the date you created your account. Subscribing during this window converts your account to the subscriber retention model above.</li>
+    </ul>
+    <p>We notify you before your data is deleted, so you have the chance to re-subscribe and preserve what you've built:</p>
+    <ul>
+      <li><strong>Former subscribers:</strong> a persistent in-app banner appears on every app launch during the last 6 months of your retention window, showing the months remaining and a Subscribe button. In the final 30 days, the banner color shifts to red. We may also send an email reminder to the address associated with your Google sign-in during the final 30 days.</li>
+      <li><strong>Trial-only users:</strong> a persistent in-app banner appears on every app launch during the final 30 days of your retention window. Trial-only users do not receive email reminders.</li>
+    </ul>
+    <p>At the end of the retention window we permanently delete: your saved finds; notes; photos (all of them, regardless of how recent); activity log; profile information; server-side cached property data tied to your finds; and your credit balance. The credit-transaction ledger may be retained in anonymized form for billing and audit purposes required by law (see §7 bullet on credit balance).</p>
+    <p><strong>What survives the sunset.</strong> Your Google sign-in record is <em>not</em> deleted by the sunset process. If you choose to return to PropertySight in the future, you can sign in with the same Google account and create a fresh account from scratch — but your prior saved finds, photos, and activity will not be recoverable. This is different from manual account deletion in §8, which removes the sign-in record as well.</p>
+    <p><strong>Re-subscribing cancels a pending sunset.</strong> If you re-subscribe at any point — including during the final-month warning phase — the scheduled deletion is cancelled and your full retention is restored. The Subscribe button on the in-app warning banner opens the subscription paywall directly.</p>
+    <p><strong>Immediate deletion remains available.</strong> You can delete your account immediately at any time from <em>More &gt; Delete account</em>; this bypasses the sunset schedule and removes both your data and your sign-in record. See §8.</p>
+
+    <h3>7.2 Skip-Trace Compliance Ledger (Legal Exception to Deletion)</h3>
+    <p>When you initiate a skip-trace owner lookup, the App requires you to attest to a lawful basis under §6 (e.g., public-records-only, an existing business relationship, or express consent). The App records that attestation — capturing your selected lawful basis and the timestamp — <strong>before</strong> we issue the underlying contact-data request, so the record exists even if the lookup itself fails. This record is the App's defensive evidence in the event of a Telephone Consumer Protection Act ("TCPA") claim or analogous state-law claim.</p>
+    <p>When your account is deleted (either by sunset under §7.1 or by your request under §8), each skip-trace attestation is <strong>anonymized and moved</strong> to a separate compliance ledger before the rest of your account data is removed. The anonymized record preserves only:</p>
+    <ul>
+      <li>The lawful basis you attested to;</li>
+      <li>The timestamp of the attestation;</li>
+      <li>A non-reversible hash of the scan identifier (no address, no phone number, no user identifier).</li>
+    </ul>
+    <p>Anonymized ledger entries are retained for <strong>four (4) years</strong> from the timestamp of the original attestation, matching the federal TCPA statute of limitations (28 U.S.C. § 1658) and corresponding state mini-TCPA windows. A daily job automatically deletes entries older than four years. This is the only category of data that survives account deletion, and it does so only in anonymized form for legal-defense purposes.</p>
 
     <h2 id="s8">8. Your Rights</h2>
     <p>You can exercise the following rights directly in the App:</p>
@@ -346,7 +372,7 @@
       <li><strong>Access / portability.</strong> Export your activity log and find data via the "Export" actions on the Finds tab and on each find detail.</li>
       <li><strong>Correction.</strong> Edit any find's notes, links, or tags directly in the App.</li>
       <li><strong>Deletion of a single find.</strong> Use the delete action on each find.</li>
-      <li><strong>Deletion of your account.</strong> Use <em>More &gt; Delete account</em>. This permanently removes your finds, activity, photos, profile, and credit ledger. The Firebase Auth user is also deleted. Allow up to 30 days for the deletion to propagate through backups.</li>
+      <li><strong>Deletion of your account.</strong> Use <em>More &gt; Delete account</em>. This permanently removes your finds, activity, photos, profile, and credit balance. The Firebase Auth user (your Google sign-in record for PropertySight) is also deleted, so the account no longer exists. Allow up to 30 days for the deletion to propagate through backups. This path is immediate and bypasses the sunset schedule in §7.1; use this if you want to leave PropertySight entirely. (The sunset schedule in §7.1 is the alternative auto-deletion path for accounts that simply go dormant; it preserves your sign-in record so you can return later, but does not preserve your data.) <strong>Exception:</strong> any skip-trace attestation records associated with your account are not removed by either path; they are anonymized and retained under §7.2 for up to four years for legal-defense purposes, after which they are also deleted.</li>
     </ul>
     <p>To request access to data not exposed in the App, to ask questions about how we process your data, or to exercise rights granted by your state's privacy law, contact us at the address in §14. We will not discriminate against you for exercising a privacy right. See §9.2 for the full list of statutory rights, response times, and appeal mechanics by jurisdiction; see §9.1 for the structured map of personal-information categories we collect.</p>
 
@@ -487,7 +513,8 @@
     <p>For the purposes of U.S. state privacy laws, PropertySight acts as a <strong>business</strong> (CCPA terminology) with respect to your account data; our subprocessors (Firebase, Railway, BatchData, Google Maps, RevenueCat, etc.) act as <strong>service providers</strong>. For the purposes of GDPR, where applicable, we are the <strong>data controller</strong> for account and platform data, and those subprocessors are our <strong>processors</strong>. You are independently responsible for your downstream use of data obtained through the App.</p>
     <p>If you have questions about this Privacy Policy or wish to exercise any of the rights described above, please contact us:</p>
     <p>
-      PropertySight<br />
+      PropertySight LLC<br />
+      Indiana, United States<br />
       Email: <a href="mailto:contact@propertysightapp.com">contact@propertysightapp.com</a>
     </p>
     <p class="callout">When you use the in-app <strong>Contact Support</strong> or <strong>Send Feedback</strong> buttons, the email's subject line is pre-filled with the app version and OS version of your device so we can help you faster. You may edit or remove this before sending.</p>
@@ -497,7 +524,7 @@
   <footer class="footer">
     <div class="container">
       <div class="footer-meta" style="margin-top:0;border-top:0;padding-top:0;">
-        <span>© 2026 PropertySight. All rights reserved.</span>
+        <span>© 2026 PropertySight LLC. All rights reserved.</span>
         <span>propertysightapp.com</span>
       </div>
     </div>

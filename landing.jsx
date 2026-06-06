@@ -9,7 +9,7 @@ const { useState, useEffect } = React;
 const HEADLINES = {
   look_log_photo: {
     label: 'Look up · Log · Photograph',
-    title: <>Look up the house. <span className="accent">Log the visit. Keep the photo.</span></>,
+    title: <>Look up the house. <span className="accent">Log the visit. Photograph the property.</span></>,
   },
   every_drive_by: {
     label: 'Every drive-by, a record',
@@ -71,11 +71,24 @@ function Hero({ layout, headlineKey }) {
                       body="Owner, value, equity, and lead signals from the sidewalk."/>
               <Pillar icon="log" title="Log it by address"
                       body="Notes, calls, mailers, and the next step — pinned to the property."/>
-              <Pillar icon="photo" title="Keep the photo"
-                      body="Your own shots of the curb, the gate, the porch — saved to the find."/>
+              <Pillar icon="photo" title="Photograph the property"
+                      body="Your own shots of the curb, the gate, the porch — attached to the find."/>
             </div>
 
             <div className="hero-cta-row">
+              <a className="store-badge" href="#" aria-label="Get it on Google Play"
+                 style={{ background: '#1E3A5F' }}>
+                <svg viewBox="0 0 512 512" aria-hidden="true">
+                  <path fill="#34D399" d="M325.3 234.3 104.6 13l280.8 161.2-60.1 60.1z"/>
+                  <path fill="#5B8DEF" d="M47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0z"/>
+                  <path fill="#FFC107" d="m425.2 225.6-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8z"/>
+                  <path fill="#F87171" d="M104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/>
+                </svg>
+                <span className="stack">
+                  <span className="small">Get it on</span>
+                  <span className="big">Google Play</span>
+                </span>
+              </a>
               <a className="store-badge" href="#" aria-label="Download on the App Store">
                 <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                   <path d="M16.4 12.7c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.1-2.8.8-3.5.8-.7 0-1.9-.8-3.1-.8-1.6 0-3 .9-3.8 2.4-1.6 2.8-.4 7 1.2 9.3.8 1.1 1.7 2.4 2.9 2.4 1.2 0 1.6-.7 3-.7 1.4 0 1.8.7 3.1.7 1.3 0 2.1-1.1 2.9-2.3.9-1.3 1.3-2.6 1.3-2.7-.1 0-2.5-1-2.6-3.8zM14.2 5.8c.7-.8 1.1-1.9 1-3-1 0-2.2.7-2.9 1.4-.6.7-1.2 1.8-1 2.9 1.1.1 2.2-.5 2.9-1.3z"/>
@@ -83,25 +96,6 @@ function Hero({ layout, headlineKey }) {
                 <span className="stack">
                   <span className="small">Download on the</span>
                   <span className="big">App Store</span>
-                </span>
-              </a>
-              <a className="store-badge" href="#" aria-label="Get it on Google Play"
-                 style={{ background: '#1E3A5F' }}>
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <defs>
-                    <linearGradient id="gp-a" x1="0" y1="0" x2="1" y2="1">
-                      <stop offset="0" stopColor="#5B8DEF"/>
-                      <stop offset="1" stopColor="#34D399"/>
-                    </linearGradient>
-                  </defs>
-                  <path fill="url(#gp-a)" d="M3.6 2.5c-.3.3-.5.7-.5 1.3v16.4c0 .6.2 1 .5 1.3L12 13l-8.4-10.5z"/>
-                  <path fill="#FFC107" d="M15.4 9.6L18.7 11.5c1 .6 1 1.4 0 2L15.4 15.4 12 12l3.4-2.4z"/>
-                  <path fill="#34D399" d="M3.6 2.5l8.4 8.4L15.4 9.6 5.4 3.7c-.6-.3-1.3-.4-1.8-1.2z"/>
-                  <path fill="#F87171" d="M3.6 21.5c.5-.8 1.2-.9 1.8-1.2l10-5.9-3.4-3.4-8.4 10.5z"/>
-                </svg>
-                <span className="stack">
-                  <span className="small">Get it on</span>
-                  <span className="big">Google Play</span>
                 </span>
               </a>
             </div>
@@ -235,7 +229,7 @@ function SceneFinds() {
       body: 'List, calendar, and map views. The whole neighborhood you worked Saturday, plotted by pin and visible by week, month, or year.' },
     { icon: 'photo', title: 'Drop in your own photos of the property.',
       body: 'The shot you took at the curb. The shot of the side gate. The porch. Every find holds your own photos — not just the satellite view.' },
-    { icon: 'time',  title: 'Pulled up anytime, by address.',
+    { icon: 'time',  title: 'Pulled up whenever you need them, by address.',
       body: 'Search the list. Filter by signal. The properties you scanned are yours — nobody else sees what you\'re working.' },
   ];
   return (
@@ -541,27 +535,27 @@ function ClosingCTA() {
     <section className="section closing">
       <div className="container">
         <div className="closing-card">
-          <h2>Walk the block. Keep every house.</h2>
+          <h2>Scout it. Scan it. It's in your pocket.</h2>
           <p>The app is free to try — no card, no signup form to fight with. Download it before your next scouting drive.</p>
           <div className="hero-cta-row" style={{ justifyContent: 'center', marginTop: 28 }}>
+            <a className="store-badge" href="#" aria-label="Get it on Google Play"
+               style={{ background: '#1E3A5F' }}>
+              <svg viewBox="0 0 512 512" aria-hidden="true">
+                <path fill="#34D399" d="M325.3 234.3 104.6 13l280.8 161.2-60.1 60.1z"/>
+                <path fill="#5B8DEF" d="M47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0z"/>
+                <path fill="#FFC107" d="m425.2 225.6-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8z"/>
+                <path fill="#F87171" d="M104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/>
+              </svg>
+              <span className="stack">
+                <span className="small">Get it on</span>
+                <span className="big">Google Play</span>
+              </span>
+            </a>
             <a className="store-badge" href="#" aria-label="Download on the App Store">
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.4 12.7c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.1-2.8.8-3.5.8-.7 0-1.9-.8-3.1-.8-1.6 0-3 .9-3.8 2.4-1.6 2.8-.4 7 1.2 9.3.8 1.1 1.7 2.4 2.9 2.4 1.2 0 1.6-.7 3-.7 1.4 0 1.8.7 3.1.7 1.3 0 2.1-1.1 2.9-2.3.9-1.3 1.3-2.6 1.3-2.7-.1 0-2.5-1-2.6-3.8zM14.2 5.8c.7-.8 1.1-1.9 1-3-1 0-2.2.7-2.9 1.4-.6.7-1.2 1.8-1 2.9 1.1.1 2.2-.5 2.9-1.3z"/></svg>
               <span className="stack">
                 <span className="small">Download on the</span>
                 <span className="big">App Store</span>
-              </span>
-            </a>
-            <a className="store-badge" href="#" aria-label="Get it on Google Play"
-               style={{ background: '#1E3A5F' }}>
-              <svg viewBox="0 0 24 24"><defs><linearGradient id="gp-b" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#5B8DEF"/><stop offset="1" stopColor="#34D399"/></linearGradient></defs>
-                <path fill="url(#gp-b)" d="M3.6 2.5c-.3.3-.5.7-.5 1.3v16.4c0 .6.2 1 .5 1.3L12 13l-8.4-10.5z"/>
-                <path fill="#FFC107" d="M15.4 9.6L18.7 11.5c1 .6 1 1.4 0 2L15.4 15.4 12 12l3.4-2.4z"/>
-                <path fill="#34D399" d="M3.6 2.5l8.4 8.4L15.4 9.6 5.4 3.7c-.6-.3-1.3-.4-1.8-1.2z"/>
-                <path fill="#F87171" d="M3.6 21.5c.5-.8 1.2-.9 1.8-1.2l10-5.9-3.4-3.4-8.4 10.5z"/>
-              </svg>
-              <span className="stack">
-                <span className="small">Get it on</span>
-                <span className="big">Google Play</span>
               </span>
             </a>
           </div>
@@ -585,7 +579,7 @@ function Footer() {
               <span className="word">Property<span className="sight">Sight</span></span>
             </a>
             <p style={{ fontSize: 13, color: 'var(--fg-muted)', marginTop: 14, maxWidth: 320, lineHeight: 1.6 }}>
-              Look up the house. Log the visit. Keep the photo. Built for agents who scout in person.
+              Look up the house. Log the visit. Photograph the property. Built for agents who scout in person.
             </p>
           </div>
           <div>
@@ -608,7 +602,7 @@ function Footer() {
           </div>
         </div>
         <div className="footer-meta">
-          <span>© 2026 PropertySight. All rights reserved.</span>
+          <span>© 2026 PropertySight LLC. All rights reserved.</span>
           <span>propertysightapp.com</span>
         </div>
       </div>

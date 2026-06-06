@@ -156,14 +156,14 @@ function ScanMock() {
     <div style={{ position: 'absolute', inset: 0, background: '#000' }}>
       <HouseScene/>
 
-      {/* Reticle */}
+      {/* Reticle — matches HouseScene's 400×600 / slice space so it frames the house */}
       <svg style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', pointerEvents: 'none' }}
-           viewBox="0 0 300 615" preserveAspectRatio="xMidYMid meet">
-        <g stroke="#fff" strokeWidth="2" fill="none" opacity="0.85">
-          <path d="M70 220 L70 200 L90 200"/>
-          <path d="M230 220 L230 200 L210 200"/>
-          <path d="M70 380 L70 400 L90 400"/>
-          <path d="M230 380 L230 400 L210 400"/>
+           viewBox="0 0 400 600" preserveAspectRatio="xMidYMid slice">
+        <g stroke="#fff" strokeWidth="3" fill="none" opacity="0.9">
+          <path d="M70 268 L70 240 L98 240"/>
+          <path d="M330 268 L330 240 L302 240"/>
+          <path d="M70 512 L70 540 L98 540"/>
+          <path d="M330 512 L330 540 L302 540"/>
         </g>
       </svg>
 
