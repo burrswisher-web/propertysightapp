@@ -36,7 +36,16 @@ function Nav() {
           <img src="assets/propertysight_icon.png" alt=""/>
           <span className="word">Property<span className="sight">Sight</span></span>
         </a>
-        <div className="nav-links">
+        <input type="checkbox" id="nav-toggle" className="nav-toggle" />
+        <label htmlFor="nav-toggle" className="nav-burger" aria-label="Open menu">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+            <line x1="4" y1="7" x2="20" y2="7"/>
+            <line x1="4" y1="12" x2="20" y2="12"/>
+            <line x1="4" y1="17" x2="20" y2="17"/>
+          </svg>
+        </label>
+        <div className="nav-links"
+             onClick={() => { const t = document.getElementById('nav-toggle'); if (t) t.checked = false; }}>
           <a href="#finds">Finds</a>
           <a href="#signals">Signals</a>
           <a href="#unlocks">Pricing</a>
@@ -175,7 +184,7 @@ function HeroPhone({ layout }) {
   }
   if (layout === 'centered') {
     return (
-      <div style={{
+      <div className="hero-phones-centered" style={{
         position: 'relative',
         display: 'flex', justifyContent: 'center', alignItems: 'flex-end',
         gap: 28,
@@ -195,18 +204,18 @@ function HeroPhone({ layout }) {
   }
   // default split
   return (
-    <div style={{
+    <div className="hero-phones-split" style={{
       position: 'relative', width: '100%',
       display: 'flex', justifyContent: 'center',
       minHeight: 640,
     }}>
-      <div style={{
+      <div className="phone-back" style={{
         position: 'absolute', right: 0, top: 40,
         transform: 'rotate(6deg)', zIndex: 1,
       }}>
         <PhoneFrame width={250}><FindMock/></PhoneFrame>
       </div>
-      <div style={{
+      <div className="phone-front" style={{
         position: 'absolute', left: 0, top: 0,
         transform: 'rotate(-3deg)', zIndex: 2,
       }}>
@@ -242,10 +251,10 @@ function SceneFinds() {
         <div className="finds-grid">
           <div className="finds-visual">
             <div className="finds-phones">
-              <div style={{ transform: 'rotate(-4deg) translateY(20px)', zIndex: 1, position: 'relative' }}>
+              <div className="phone-list-wrap" style={{ transform: 'rotate(-4deg) translateY(20px)', zIndex: 1, position: 'relative' }}>
                 <PhoneFrame width={258}><FindsListMock/></PhoneFrame>
               </div>
-              <div style={{ transform: 'rotate(5deg) translateY(-10px)', zIndex: 2, position: 'relative', marginLeft: -36 }}>
+              <div className="phone-map-wrap" style={{ transform: 'rotate(5deg) translateY(-10px)', zIndex: 2, position: 'relative', marginLeft: -36 }}>
                 <PhoneFrame width={268}><FindsMapMock/></PhoneFrame>
               </div>
             </div>
