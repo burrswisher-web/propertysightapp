@@ -228,7 +228,7 @@
 
     <div class="doc-head">
       <h1>Privacy Policy</h1>
-      <p class="updated">Last updated: June 7, 2026</p>
+      <p class="updated">Last updated: June 25, 2026</p>
     </div>
 
     <p class="lead">This Privacy Policy describes how PropertySight LLC, an Indiana limited liability company ("PropertySight", "we", "our", or "us"), collects, uses, and shares information when you use the PropertySight mobile application (the "App"). PropertySight is a tool intended for use by U.S. real estate professionals to capture, organize, and act on property leads. We do not independently verify license status.</p>
@@ -361,6 +361,7 @@
     </ul>
     <p>At the end of the retention window we permanently delete: your saved finds; notes; photos (all of them, regardless of how recent); activity log; profile information; server-side cached property data tied to your finds; and your credit balance. The credit-transaction ledger may be retained in anonymized form for billing and audit purposes required by law (see §7 bullet on credit balance).</p>
     <p><strong>What survives the sunset.</strong> Your Google sign-in record is <em>not</em> deleted by the sunset process. If you choose to return to PropertySight in the future, you can sign in with the same Google account and create a fresh account from scratch — but your prior saved finds, photos, and activity will not be recoverable. This is different from manual account deletion in §8, which removes the sign-in record as well.</p>
+    <p><strong>A minimal re-use marker survives the sunset.</strong> Because the sunset process preserves your sign-in record (above), the one-time welcome benefits we grant new accounts — your free trial scans and your signup credits — could otherwise be claimed repeatedly by letting an account lapse and signing back in. To prevent that, when a dormant account is sunset-deleted we retain a single permanent, irreversible marker derived from your sign-in identifier (a <em>salted one-way hash</em> — not your actual identifier, name, email, or any other personal information). The marker records only that the one-time welcome benefits were already granted to that identity; it contains no finds, notes, photos, contact data, or profile information, and it cannot be reversed to recover your identifier. If you return and create a fresh account with the same Google sign-in, your account works normally but those one-time welcome benefits are not granted a second time. This marker is written only by the sunset process; manual account deletion under §8 removes your sign-in record entirely, so no such marker is created on that path.</p>
     <p><strong>Re-subscribing cancels a pending sunset.</strong> If you re-subscribe at any point — including during the final-month warning phase — the scheduled deletion is cancelled and your full retention is restored. The Subscribe button on the in-app warning banner opens the subscription paywall directly.</p>
     <p><strong>Immediate deletion remains available.</strong> You can delete your account immediately at any time from <em>More &gt; Delete account</em>; this bypasses the sunset schedule and removes both your data and your sign-in record. See §8.</p>
 
@@ -372,7 +373,7 @@
       <li>The timestamp of the attestation;</li>
       <li>A non-reversible hash of the scan identifier (no address, no phone number, no user identifier).</li>
     </ul>
-    <p>Anonymized ledger entries are retained for <strong>four (4) years</strong> from the timestamp of the original attestation, matching the federal TCPA statute of limitations (28 U.S.C. § 1658) and corresponding state mini-TCPA windows. A daily job automatically deletes entries older than four years. This is the only category of data that survives account deletion, and it does so only in anonymized form for legal-defense purposes.</p>
+    <p>Anonymized ledger entries are retained for <strong>four (4) years</strong> from the timestamp of the original attestation, matching the federal TCPA statute of limitations (28 U.S.C. § 1658) and corresponding state mini-TCPA windows. A daily job automatically deletes entries older than four years. Apart from the minimal, irreversible re-use marker described in §7.1 (which carries no personal information), this anonymized compliance ledger is the only category of data that survives account deletion, and it does so only in anonymized form for legal-defense purposes.</p>
 
     <h2 id="s8">8. Your Rights</h2>
     <p>You can exercise the following rights directly in the App:</p>
