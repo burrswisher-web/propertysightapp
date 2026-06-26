@@ -72,12 +72,12 @@ function Hero({ layout, headlineKey }) {
               <span className="dot"/> Built for real estate agents
             </div>
             <h1 className="hero-headline">{h.title}</h1>
-            <p className="hero-sub">PropertySight turns every drive-by into a record you can work later. Point your phone at any house to pull the owner, value, equity, and lead signals — then log your visit, your conversation, and your own photos against the address.</p>
+            <p className="hero-sub">PropertySight turns every drive-by into a record you can work later. Point your phone at any house to pull the owner, the assessor value, and lead signals — then log your visit, your conversation, and your own photos against the address.</p>
 
             {/* Three pillars */}
             <div className="pillars">
               <Pillar icon="lookup" title="Look it up"
-                      body="Owner, value, equity, and lead signals from the sidewalk."/>
+                      body="Owner, assessor value, and lead signals from the sidewalk."/>
               <Pillar icon="log" title="Log it by address"
                       body="Notes, calls, mailers, and the next step — pinned to the property."/>
               <Pillar icon="photo" title="Photograph the property"
@@ -288,19 +288,21 @@ function SceneFinds() {
 // ════════════════════════════════════════════════════════════
 function SceneSignals() {
   const signals = [
-    { color: '#9CA3AF', label: 'Long-term owner', sub: '15+ years at the address — the kind of owner who might be ready for a change but hasn\'t listed yet.' },
-    { color: '#60A5FA', label: 'Absentee',        sub: 'Owner\'s address doesn\'t match the property. The kind of door you knock with a different script.' },
-    { color: '#A78BFA', label: 'Investor-owned',  sub: 'LLC, trust, or known REI holder. Different motivations, different conversation.' },
-    { color: '#34D399', label: 'High equity',     sub: 'They owe little. They own most. The single best predictor of a deal that can close.' },
-    { color: '#F87171', label: 'Distress',        sub: 'NOD, lien, or pre-foreclosure on the record. Treated with the right tone and timing.' },
+    { color: '#FBBF24', label: 'Vacant',          when: 'At the curb',         sub: 'Public records flag the home as vacant. An empty house costs the owner every month — often a motivated seller.' },
+    { color: '#9CA3AF', label: 'Long-term owner', when: 'At the curb',         sub: '15+ years at the address — the kind of owner who might be ready for a change but hasn\'t listed yet.' },
+    { color: '#60A5FA', label: 'Absentee',        when: 'At the curb',         sub: 'Owner\'s address doesn\'t match the property. The kind of door you knock with a different script.' },
+    { color: '#A78BFA', label: 'Investor-owned',  when: 'At the curb',         sub: 'LLC, trust, or known REI holder. Different motivations, different conversation.' },
+    { color: '#34D399', label: 'High equity',     when: 'With Financials',     sub: 'They owe little. They own most. The single best predictor of a deal that can close.' },
+    { color: '#2DD4BF', label: 'Free & clear',    when: 'With Financials',     sub: 'No mortgage on file. Full equity, no monthly payment — maximum flexibility to sell on their terms.' },
+    { color: '#F87171', label: 'Distress',        when: 'With Permits + Distress', sub: 'NOD, lien, or pre-foreclosure on the record. Treated with the right tone and timing.' },
   ];
 
   return (
     <section className="section" id="signals">
       <div className="container">
         <div className="scene-eyebrow"><span className="scene-num">02</span> Before you knock</div>
-        <h2 className="section-title">Five flags tell you which houses are worth working.</h2>
-        <p className="section-sub">Every find is checked against the signals the moment you confirm it. So when you walk a block, you already know which doors to knock first.</p>
+        <h2 className="section-title">Seven flags tell you which houses are worth working.</h2>
+        <p className="section-sub">The four record-based flags appear the moment you confirm a find. The financial flags — high equity, free &amp; clear, and distress — light up once you unlock that property&apos;s deeper data.</p>
 
         <div className="signal-grid">
           {signals.map(s => (
@@ -310,6 +312,7 @@ function SceneSignals() {
                 <span className="signal-card-label" style={{ color: s.color }}>{s.label}</span>
               </div>
               <div className="signal-card-body">{s.sub}</div>
+              <div className="signal-when">{s.when}</div>
             </div>
           ))}
         </div>
@@ -326,18 +329,20 @@ function SceneUnlocks() {
     'Owner of record',
     'Address & coordinates',
     'Year built · beds · baths · sq ft',
+    'Last sale price + date',
+    'Tax assessment',
     'Lead signals (motivation flags)',
     'Your own photos & notes',
   ];
 
   const tiers = [
     { name: 'Get Financials',          icon: 'dollar',
-      lines: ['Estimated value', 'Equity & loan-to-value', 'Last sale price + date', 'Tax assessment'] },
+      lines: ['Equity & loan-to-value', 'Lender & loan amount', 'Loan balance & rate', 'Open liens & lien balance'] },
     { name: 'Get Comps',               icon: 'compare',
       lines: ['3 nearby recent sales', 'Side-by-side comparison', 'Distance & sale date'] },
     { name: 'Get Permits + Distress',  icon: 'warning',
       lines: ['Permit history', 'NOD, liens, pre-foreclosure', 'Code violations'] },
-    { name: 'Get Owner Contact',       icon: 'phone',
+    { name: 'Get Owner Contact',       icon: 'phone', badge: 'Subscriber only',
       lines: ['Phone & email', 'DNC / TCPA flagged', 'Skip-trace refunds if unverified'] },
   ];
 
@@ -376,13 +381,17 @@ function SceneUnlocks() {
           {tiers.map(t => (
             <div className="tier-card" key={t.name}>
               <div className="tier-ic"><TierIcon kind={t.icon}/></div>
-              <div className="tier-name">{t.name}</div>
+              <div className="tier-name">
+                {t.name}
+                {t.badge && <span className="tier-badge">{t.badge}</span>}
+              </div>
               <ul className="tier-lines">
                 {t.lines.map(l => <li key={l}>{l}</li>)}
               </ul>
             </div>
           ))}
         </div>
+        <p className="tier-note">Owner Contact requires an active subscription; lookups still cost credits.</p>
       </div>
     </section>
   );
@@ -527,7 +536,7 @@ function Compliance() {
             </svg>
           </div>
           <div>
-            <h3>Built on records you can name. Sourced from BatchData, the Federal Reserve, and Google.</h3>
+            <h3>Built on records you can name. Sourced from BatchData and Google.</h3>
             <p>Skip-traced contacts are flagged against the National Do Not Call registry, and unverified records are refunded automatically. <a href="data-sources.html" style={{ color: 'var(--accent)', textDecoration: 'none', fontWeight: 600 }}>See where each field comes from →</a></p>
           </div>
         </div>

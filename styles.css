@@ -287,6 +287,16 @@ a { color: inherit; }
   color: var(--fg-muted);
   line-height: 1.55;
 }
+.signal-when {
+  margin-top: auto;
+  padding-top: 4px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+  opacity: 0.72;
+}
 
 /* Closing CTA */
 .section.closing { padding: 96px 0 112px; }
@@ -608,6 +618,25 @@ a { color: inherit; }
   font-weight: 700;
   color: var(--fg);
   letter-spacing: -0.2px;
+}
+.tier-badge {
+  display: inline-block;
+  margin-top: 6px;
+  padding: 3px 9px;
+  border-radius: 9999px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  background: var(--accent-soft);
+  border: 1px solid rgba(91,141,239,0.35);
+  color: var(--accent);
+}
+.tier-note {
+  margin-top: 18px;
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--fg-muted);
 }
 .tier-lines {
   list-style: none;
