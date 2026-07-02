@@ -98,15 +98,15 @@ function Hero({ layout, headlineKey }) {
                   <span className="big">Google Play</span>
                 </span>
               </a>
-              <a className="store-badge" href="#" aria-label="Download on the App Store">
+              <span className="store-badge soon" aria-label="Coming soon to the App Store">
                 <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                   <path d="M16.4 12.7c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.1-2.8.8-3.5.8-.7 0-1.9-.8-3.1-.8-1.6 0-3 .9-3.8 2.4-1.6 2.8-.4 7 1.2 9.3.8 1.1 1.7 2.4 2.9 2.4 1.2 0 1.6-.7 3-.7 1.4 0 1.8.7 3.1.7 1.3 0 2.1-1.1 2.9-2.3.9-1.3 1.3-2.6 1.3-2.7-.1 0-2.5-1-2.6-3.8zM14.2 5.8c.7-.8 1.1-1.9 1-3-1 0-2.2.7-2.9 1.4-.6.7-1.2 1.8-1 2.9 1.1.1 2.2-.5 2.9-1.3z"/>
                 </svg>
                 <span className="stack">
-                  <span className="small">Download on the</span>
+                  <span className="small">Coming soon to the</span>
                   <span className="big">App Store</span>
                 </span>
-              </a>
+              </span>
             </div>
 
             <div className="hero-meta">
@@ -114,7 +114,7 @@ function Hero({ layout, headlineKey }) {
               <span className="sep"/>
               <span>No card required</span>
               <span className="sep"/>
-              <span>iOS · Android</span>
+              <span>Android now · iOS soon</span>
             </div>
           </div>
 
@@ -335,14 +335,21 @@ function SceneUnlocks() {
     'Your own photos & notes',
   ];
 
+  const plans = [
+    { name: 'Starter', price: '9.99', per: '/mo', scans: 35, credits: 3, featured: false,
+      foot: 'For agents scouting a few blocks a month.' },
+    { name: 'Pro', price: '19.99', per: '/mo', scans: 75, credits: 5, featured: true,
+      foot: 'For full-time prospecting and farming a territory.' },
+  ];
+
   const tiers = [
-    { name: 'Get Financials',          icon: 'dollar',
+    { name: 'Get Financials',          icon: 'dollar', cost: '1 credit',
       lines: ['Equity & loan-to-value', 'Lender & loan amount', 'Loan balance & rate', 'Open liens & lien balance'] },
-    { name: 'Get Comps',               icon: 'compare',
+    { name: 'Get Comps',               icon: 'compare', cost: '2 credits',
       lines: ['3 nearby recent sales', 'Side-by-side comparison', 'Distance & sale date'] },
-    { name: 'Get Permits + Distress',  icon: 'warning',
+    { name: 'Get Permits + Distress',  icon: 'warning', cost: '1 credit',
       lines: ['Permit history', 'NOD, liens, pre-foreclosure', 'Code violations'] },
-    { name: 'Get Owner Contact',       icon: 'phone', badge: 'Subscriber only',
+    { name: 'Get Owner Contact',       icon: 'phone', badge: 'Subscriber only', cost: '1 credit',
       lines: ['Phone & email', 'DNC / TCPA flagged', 'Skip-trace refunds if unverified'] },
   ];
 
@@ -350,8 +357,44 @@ function SceneUnlocks() {
     <section className="section surface" id="unlocks">
       <div className="container">
         <div className="scene-eyebrow"><span className="scene-num">03</span> Back at your desk</div>
-        <h2 className="section-title">Unlock the layer you need, only when you need it.</h2>
-        <p className="section-sub">The basics come with your monthly subscription. When a find is worth deeper diligence, unlock one or all four tiers — only on the properties that earned it.</p>
+        <h2 className="section-title">Simple monthly plans. Deeper data only when a find earns it.</h2>
+        <p className="section-sub">Every subscription includes monthly scans and credits. Scans pull the basics on any house; credits unlock the deeper layers — and you&apos;re only charged when we actually find the data.</p>
+
+        <div className="plan-grid">
+          {plans.map(p => (
+            <div className={'plan-card' + (p.featured ? ' featured' : '')} key={p.name}>
+              {p.featured && <span className="plan-flag">Most scans</span>}
+              <div className="plan-name">{p.name}</div>
+              <div className="plan-price">
+                {p.price
+                  ? <React.Fragment><span className="amt">${p.price}</span><span className="per">{p.per}</span></React.Fragment>
+                  : <span className="tbd">Pricing to confirm</span>}
+              </div>
+              <div className="plan-allot">
+                <div className="row"><span className="n">{p.scans}</span><span className="lbl">scans / month</span></div>
+                <div className="row"><span className="n">{p.credits}</span><span className="lbl">unlock credits / month</span></div>
+              </div>
+              <div className="plan-foot">{p.foot}</div>
+            </div>
+          ))}
+        </div>
+        <div className="credit-explainer">
+          <div className="ce-head">How credit packs work</div>
+          <div className="ce-grid">
+            <div className="ce-item">
+              <div className="ce-n">What a credit is</div>
+              <div className="ce-d">Your subscription includes a few credits each month. One credit unlocks one deeper layer on a property — the exact cost per layer is shown on the cards below. When you want more, buy a pack.</div>
+            </div>
+            <div className="ce-item">
+              <div className="ce-n">Two pack sizes</div>
+              <div className="ce-d"><strong>30 or 65 credits.</strong> As a yardstick, bundling Financials + Permits + Comps into a Property Report costs 3 credits (owner contact is separate) — so 30 credits is roughly 10 reports. Packs start at $19.99; buy anytime, no plan change.</div>
+            </div>
+            <div className="ce-item">
+              <div className="ce-n">Only pay for data you need</div>
+              <div className="ce-d">Buy credits when a find earns deeper work — not upfront. And every unlock is refunded automatically if we can't verify the record.</div>
+            </div>
+          </div>
+        </div>
 
         <div className="tier-included">
           <div className="tier-included-head">
@@ -385,6 +428,7 @@ function SceneUnlocks() {
                 {t.name}
                 {t.badge && <span className="tier-badge">{t.badge}</span>}
               </div>
+              <div className="tier-cost">{t.cost}</div>
               <ul className="tier-lines">
                 {t.lines.map(l => <li key={l}>{l}</li>)}
               </ul>
@@ -425,10 +469,10 @@ function SceneActivity() {
   const bullets = [
     { icon: 'note', title: 'Write what happened, against the property.',
       body: 'Every drive-by, mailer, call, and conversation lives on the find itself. Open the address a month later — the whole history is right there.' },
-    { icon: 'tag',  title: 'Tag the next step.',
-      body: 'Follow up. Listing soon. Mailed. Called. Met owner. Filter the feed down to who you need to circle back to this week.' },
+    { icon: 'tag',  title: 'Categorize every find.',
+      body: 'Buyer Lead, Listing Opportunity, Comp, Investment — tag each property so you can filter your list down to just the leads you want to work this week.' },
     { icon: 'timeline', title: 'A field log you can actually search.',
-      body: 'Chronological by default, searchable by address or tag. Pull up a whole neighborhood\'s worth of follow-ups before the next door-knocking walk.' },
+      body: 'Chronological by default, searchable by note text and filterable by tag. Pull up a whole neighborhood\'s worth of follow-ups before the next door-knocking walk.' },
   ];
 
   return (
@@ -569,13 +613,13 @@ function ClosingCTA() {
                 <span className="big">Google Play</span>
               </span>
             </a>
-            <a className="store-badge" href="#" aria-label="Download on the App Store">
+            <span className="store-badge soon" aria-label="Coming soon to the App Store">
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.4 12.7c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.1-2.8.8-3.5.8-.7 0-1.9-.8-3.1-.8-1.6 0-3 .9-3.8 2.4-1.6 2.8-.4 7 1.2 9.3.8 1.1 1.7 2.4 2.9 2.4 1.2 0 1.6-.7 3-.7 1.4 0 1.8.7 3.1.7 1.3 0 2.1-1.1 2.9-2.3.9-1.3 1.3-2.6 1.3-2.7-.1 0-2.5-1-2.6-3.8zM14.2 5.8c.7-.8 1.1-1.9 1-3-1 0-2.2.7-2.9 1.4-.6.7-1.2 1.8-1 2.9 1.1.1 2.2-.5 2.9-1.3z"/></svg>
               <span className="stack">
-                <span className="small">Download on the</span>
+                <span className="small">Coming soon to the</span>
                 <span className="big">App Store</span>
               </span>
-            </a>
+            </span>
           </div>
         </div>
       </div>
@@ -603,8 +647,8 @@ function Footer() {
           <div>
             <div className="col-title">App</div>
             <ul>
-              <li><a href="#">Download for iOS</a></li>
               <li><a href="#">Download for Android</a></li>
+              <li><span className="soon-link">iOS — coming soon</span></li>
               <li><a href="#finds">Your Finds</a></li>
               <li><a href="#signals">Lead signals</a></li>
               <li><a href="#unlocks">Pricing</a></li>

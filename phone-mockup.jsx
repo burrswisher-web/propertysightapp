@@ -376,37 +376,36 @@ Object.assign(window, { PhoneFrame, ScanMock, FindMock, ActivityMock, FindsListM
 // ────────────────────────────────────────────────────────────
 function ActivityMock() {
   const tags = [
-    { id: 'all',     label: 'All',          selected: true },
-    { id: 'follow',  label: 'Follow up',    selected: false },
-    { id: 'listing', label: 'Listing soon', selected: false },
-    { id: 'mailed',  label: 'Mailed',       selected: false },
-    { id: 'called',  label: 'Called',       selected: false },
-    { id: 'met',     label: 'Met owner',    selected: false },
+    { id: 'all',     label: 'All',                 selected: true },
+    { id: 'buyer',   label: 'Buyer Lead',          selected: false },
+    { id: 'listing', label: 'Listing Opportunity', selected: false },
+    { id: 'comp',    label: 'Comp',                selected: false },
+    { id: 'invest',  label: 'Investment',          selected: false },
   ];
   const items = [
     {
       time: 'May 17 · 3:42 PM',
       addr: '142 Oak Street, San Francisco',
       text: 'Met owner briefly — open to offers but not actively listing. Follow up in 60 days.',
-      pill: { label: 'Follow up', color: '#FFC107' },
+      pill: { label: 'Listing Opportunity', color: '#4CAF50' },
     },
     {
       time: 'May 17 · 11:08 AM',
       addr: '4823 Magnolia Avenue, Oakland',
       text: 'Mailed yellow letter. LLC owner — direct mail to registered agent address.',
-      pill: { label: 'Mailed', color: '#60A5FA' },
+      pill: { label: 'Investment', color: '#9C27B0' },
     },
     {
       time: 'May 15 · 6:20 PM',
       addr: '17 Heritage Lane, Berkeley',
       text: 'Spoke to neighbor — owner is 82, kids live out of state.',
-      pill: { label: 'Met owner', color: '#34D399' },
+      pill: { label: 'Listing Opportunity', color: '#4CAF50' },
     },
     {
       time: 'May 14 · 9:55 AM',
       addr: '901 Castro Street #4B, Mountain View',
       text: 'NOD recorded last month. Sent compassionate-tone postcard.',
-      pill: { label: 'Mailed', color: '#60A5FA' },
+      pill: { label: 'Investment', color: '#9C27B0' },
     },
   ];
 

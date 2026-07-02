@@ -342,6 +342,15 @@ a { color: inherit; }
 .store-badge .stack { display: flex; flex-direction: column; line-height: 1.1; text-align: left; }
 .store-badge .stack .small { font-size: 10px; opacity: 0.78; }
 .store-badge .stack .big { font-size: 15px; font-weight: 600; letter-spacing: -0.2px; }
+.store-badge.soon {
+  background: transparent;
+  color: var(--fg-muted);
+  border: 1px dashed rgba(30, 58, 95, 0.32);
+  cursor: default;
+}
+.store-badge.soon:hover { transform: none; box-shadow: none; }
+.store-badge.soon svg { opacity: 0.55; }
+.store-badge.soon .stack .big { color: var(--fg); }
 
 /* Hero layout variants */
 .hero-grid {
@@ -567,6 +576,80 @@ a { color: inherit; }
   flex-shrink: 0;
 }
 
+/* Plans */
+.plan-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin: 40px auto 8px;
+  max-width: 660px;
+}
+@media (max-width: 720px) { .plan-grid { grid-template-columns: 1fr; } }
+.plan-card {
+  border: 1px solid rgba(30, 58, 95, 0.14);
+  border-radius: 16px;
+  padding: 22px 22px 24px;
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+}
+.plan-card.featured {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent), 0 14px 34px -18px rgba(44, 74, 110, 0.5);
+}
+.plan-flag {
+  align-self: flex-start;
+  font-size: 10px; font-weight: 800; letter-spacing: 0.6px; text-transform: uppercase;
+  color: var(--accent);
+  background: var(--accent-soft);
+  padding: 3px 10px; border-radius: 999px;
+  margin-bottom: 12px;
+}
+.plan-name { font-size: 15px; font-weight: 700; color: var(--fg); letter-spacing: -0.2px; }
+.plan-price { margin: 8px 0 2px; display: flex; align-items: baseline; gap: 4px; }
+.plan-price .amt { font-size: 34px; font-weight: 800; letter-spacing: -1px; color: var(--fg); }
+.plan-price .per { font-size: 13px; color: var(--fg-muted); font-weight: 600; }
+.plan-price .tbd { font-size: 15px; font-weight: 700; color: var(--accent); }
+.plan-allot { margin: 12px 0 0; padding: 14px 0 0; border-top: 1px solid rgba(30,58,95,0.1);
+  display: flex; flex-direction: column; gap: 8px; }
+.plan-allot .row { display: flex; align-items: baseline; gap: 8px; font-size: 13px; color: var(--fg); }
+.plan-allot .n { font-weight: 800; font-variant-numeric: tabular-nums; min-width: 26px; }
+.plan-allot .lbl { color: var(--fg-muted); }
+.plan-foot { margin-top: 14px; font-size: 11.5px; color: var(--fg-muted); line-height: 1.5; }
+
+.topup-note {
+  margin: 16px 0 0;
+  display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  font-size: 12.5px; color: var(--fg-muted);
+}
+.topup-note b { color: var(--fg); font-weight: 700; }
+.topup-note .tp-pill {
+  font-size: 10px; font-weight: 800; letter-spacing: 0.5px; text-transform: uppercase;
+  color: #2E7D32; background: rgba(76,175,80,0.14); padding: 3px 9px; border-radius: 999px;
+}
+
+/* Credit explainer */
+.credit-explainer {
+  margin: 18px auto 0;
+  max-width: 660px;
+  border: 1px solid rgba(30,58,95,0.14);
+  border-radius: 16px;
+  padding: 20px 22px 22px;
+  background: var(--surface, rgba(30,58,95,0.03));
+}
+.ce-head {
+  font-size: 11px; font-weight: 800; letter-spacing: 0.6px; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 14px;
+}
+.ce-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+}
+@media (max-width: 720px) { .ce-grid { grid-template-columns: 1fr; gap: 16px; } }
+.ce-item { display: flex; flex-direction: column; gap: 5px; }
+.ce-n { font-size: 15px; font-weight: 800; color: var(--fg); letter-spacing: -0.2px; }
+.ce-d { font-size: 12.5px; line-height: 1.55; color: var(--fg-muted); }
+.ce-d strong { color: var(--fg); font-weight: 700; }
+
 .tier-head {
   margin-top: 56px;
   display: flex;
@@ -630,6 +713,14 @@ a { color: inherit; }
   text-transform: uppercase;
   background: var(--accent-soft);
   border: 1px solid rgba(91,141,239,0.35);
+  color: var(--accent);
+}
+.tier-cost {
+  margin-top: 8px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
   color: var(--accent);
 }
 .tier-note {
@@ -800,6 +891,23 @@ a { color: inherit; }
   transition: color var(--t-fast) var(--ease);
 }
 .footer a:hover { color: var(--fg); }
+.footer .soon-link {
+  color: var(--fg-faint);
+  font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+.footer .soon-link::after {
+  content: 'SOON';
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  padding: 1px 5px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+}
 .footer-meta {
   margin-top: 40px;
   padding-top: 24px;
