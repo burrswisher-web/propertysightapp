@@ -51,7 +51,7 @@ function Nav() {
           <a href="#unlocks">Pricing</a>
           <a href="data-sources.html">Sources</a>
           <a href="privacy.html">Privacy</a>
-          <a className="store-pill" href="#">Get the app</a>
+          <a className="store-pill" href="https://play.google.com/store/apps/details?id=com.propertysight" target="_blank" rel="noopener">Get the app</a>
         </div>
       </div>
     </nav>
@@ -85,7 +85,7 @@ function Hero({ layout, headlineKey }) {
             </div>
 
             <div className="hero-cta-row">
-              <a className="store-badge" href="#" aria-label="Get it on Google Play"
+              <a className="store-badge" href="https://play.google.com/store/apps/details?id=com.propertysight" target="_blank" rel="noopener" aria-label="Get it on Google Play"
                  style={{ background: '#1E3A5F' }}>
                 <svg viewBox="0 0 512 512" aria-hidden="true">
                   <path fill="#34D399" d="M325.3 234.3 104.6 13l280.8 161.2-60.1 60.1z"/>
@@ -600,7 +600,7 @@ function ClosingCTA() {
           <h2>Scout it. Scan it. It's in your pocket.</h2>
           <p>The app is free to try — no card, no signup form to fight with. Download it before your next scouting drive.</p>
           <div className="hero-cta-row" style={{ justifyContent: 'center', marginTop: 28 }}>
-            <a className="store-badge" href="#" aria-label="Get it on Google Play"
+            <a className="store-badge" href="https://play.google.com/store/apps/details?id=com.propertysight" target="_blank" rel="noopener" aria-label="Get it on Google Play"
                style={{ background: '#1E3A5F' }}>
               <svg viewBox="0 0 512 512" aria-hidden="true">
                 <path fill="#34D399" d="M325.3 234.3 104.6 13l280.8 161.2-60.1 60.1z"/>
@@ -647,7 +647,7 @@ function Footer() {
           <div>
             <div className="col-title">App</div>
             <ul>
-              <li><a href="#">Download for Android</a></li>
+              <li><a href="https://play.google.com/store/apps/details?id=com.propertysight" target="_blank" rel="noopener">Download for Android</a></li>
               <li><span className="soon-link">iOS — coming soon</span></li>
               <li><a href="#finds">Your Finds</a></li>
               <li><a href="#signals">Lead signals</a></li>
