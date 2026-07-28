@@ -51,6 +51,7 @@ function Nav() {
           <a href="#unlocks">Pricing</a>
           <a href="data-sources.html">Sources</a>
           <a href="privacy.html">Privacy</a>
+          <a href="terms.html">Terms</a>
           <a className="store-pill" href="https://play.google.com/store/apps/details?id=com.propertysight" target="_blank" rel="noopener">Get the app</a>
         </div>
       </div>
@@ -659,6 +660,7 @@ function Footer() {
             <ul>
               <li><a href="data-sources.html">Data sources</a></li>
               <li><a href="privacy.html">Privacy policy</a></li>
+              <li><a href="terms.html">Terms of use</a></li>
               <li><a href="mailto:contact@propertysightapp.com">Contact</a></li>
             </ul>
           </div>

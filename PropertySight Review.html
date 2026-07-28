@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>PropertySight — New-Customer Review</title>
+<link rel="stylesheet" href="assets/colors_and_type.css" />
+<style>
+  doc-page:not(:defined) { visibility: hidden; }
+  body { background: #E9EDF4; }
+
+  doc-page { --ink: #1E3A5F; }
+
+  .r-body { color: #1E3A5F; line-height: 1.6; }
+  .r-body p { font-size: 12.5px; margin: 0 0 11px; }
+  .r-body h1 { font-size: 30px; letter-spacing: -0.6px; line-height: 1.08; margin: 0 0 6px; }
+  .r-body h2 {
+    font-size: 18px; letter-spacing: -0.2px; margin: 34px 0 6px;
+    padding-bottom: 7px; border-bottom: 2px solid rgba(30,58,95,0.14);
+  }
+  .r-body h3 { font-size: 14px; margin: 20px 0 5px; color: #2C4A6E; }
+  .r-body strong { color: #16283f; }
+  .r-body ul { margin: 4px 0 12px; padding-left: 18px; }
+  .r-body li { font-size: 12.5px; margin: 0 0 5px; line-height: 1.5; }
+  .r-body a { color: #2C6FDB; text-decoration: none; }
+
+  /* Cover */
+  .cover { border-bottom: 3px solid #2C4A6E; padding-bottom: 20px; margin-bottom: 8px; }
+  .cover .eyebrow {
+    font-size: 11px; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase;
+    color: #5B8DEF; margin-bottom: 14px;
+  }
+  .cover .sub { font-size: 14px; color: rgba(30,58,95,0.62); max-width: 62ch; margin-top: 10px; }
+  .cover .meta {
+    display: flex; flex-wrap: wrap; gap: 8px 26px; margin-top: 18px;
+    font-size: 11.5px; color: rgba(30,58,95,0.6);
+  }
+  .cover .meta b { color: #1E3A5F; font-weight: 700; }
+
+  /* Verdict band */
+  .verdict {
+    display: grid; grid-template-columns: auto 1fr; gap: 18px; align-items: center;
+    background: #0F2138; color: #fff; border-radius: 16px; padding: 20px 24px; margin: 18px 0 6px;
+  }
+  .verdict .score { text-align: center; line-height: 1; }
+  .verdict .score .n { font-size: 46px; font-weight: 800; letter-spacing: -1.5px; }
+  .verdict .score .d { font-size: 13px; opacity: 0.6; }
+  .verdict .score .lbl { font-size: 10px; letter-spacing: 1px; text-transform: uppercase; opacity: 0.7; margin-top: 6px; }
+  .verdict p { color: rgba(255,255,255,0.86); font-size: 12.5px; margin: 0; }
+  .verdict .rec { font-weight: 700; color: #FFC107; }
+
+  /* Score grid */
+  .scoregrid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 30px; margin: 8px 0 4px; }
+  .scorerow { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 10px;
+    padding: 7px 0; border-bottom: 1px solid rgba(30,58,95,0.1); }
+  .scorerow .name { font-size: 12px; font-weight: 600; }
+  .scorerow .bar { grid-column: 1 / -1; height: 5px; border-radius: 3px; background: rgba(30,58,95,0.1); overflow: hidden; margin-top: 5px; }
+  .scorerow .bar i { display: block; height: 100%; border-radius: 3px; }
+  .scorerow .val { font-size: 12px; font-weight: 800; font-variant-numeric: tabular-nums; }
+
+  /* Callout boxes */
+  .box { border-radius: 12px; padding: 13px 16px; margin: 12px 0; font-size: 12px; line-height: 1.55; }
+  .box .t { font-weight: 700; font-size: 11px; letter-spacing: 0.6px; text-transform: uppercase; margin-bottom: 5px; }
+  .box.crit { background: rgba(229,57,53,0.07); border-left: 4px solid #E53935; }
+  .box.crit .t { color: #C62828; }
+  .box.good { background: rgba(76,175,80,0.08); border-left: 4px solid #4CAF50; }
+  .box.good .t { color: #2E7D32; }
+  .box.warn { background: rgba(255,193,7,0.1); border-left: 4px solid #F5A623; }
+  .box.warn .t { color: #B7791F; }
+  .box.evidence { background: rgba(30,58,95,0.045); border-left: 4px solid #5B8DEF; font-size: 11.5px; }
+  .box.evidence .t { color: #2C4A6E; }
+  .box code { font-family: var(--font-mono); font-size: 10.5px; background: rgba(30,58,95,0.08); padding: 1px 4px; border-radius: 4px; }
+
+  /* Funnel */
+  .funnel { display: flex; flex-direction: column; gap: 3px; margin: 10px 0 14px; }
+  .fstep { display: grid; grid-template-columns: 120px 1fr auto; align-items: center; gap: 12px;
+    padding: 9px 14px; border-radius: 9px; background: rgba(30,58,95,0.04); }
+  .fstep .stage { font-weight: 700; font-size: 12px; }
+  .fstep .note { font-size: 11px; color: rgba(30,58,95,0.62); }
+  .fstep .risk { font-size: 10px; font-weight: 800; letter-spacing: 0.5px; text-transform: uppercase;
+    padding: 3px 9px; border-radius: 999px; white-space: nowrap; }
+  .risk-high { background: rgba(229,57,53,0.14); color: #C62828; }
+  .risk-med { background: rgba(255,193,7,0.18); color: #B7791F; }
+  .risk-low { background: rgba(76,175,80,0.16); color: #2E7D32; }
+
+  /* Rec cards */
+  .rec-card { border: 1px solid rgba(30,58,95,0.14); border-radius: 12px; padding: 14px 16px; margin: 10px 0;
+    break-inside: avoid; }
+  .rec-card .head { display: flex; align-items: baseline; gap: 10px; margin-bottom: 7px; }
+  .rec-card .num { font-size: 12px; font-weight: 800; color: #5B8DEF; font-variant-numeric: tabular-nums; }
+  .rec-card .title { font-size: 13.5px; font-weight: 700; }
+  .rec-card .row { display: grid; grid-template-columns: 74px 1fr; gap: 8px; font-size: 11.5px; margin: 3px 0; }
+  .rec-card .row .k { font-weight: 700; color: rgba(30,58,95,0.55); text-transform: uppercase; font-size: 9.5px; letter-spacing: 0.5px; padding-top: 1px; }
+  .rec-card .tag { display: inline-block; font-size: 9.5px; font-weight: 800; letter-spacing: 0.5px; text-transform: uppercase;
+    padding: 2px 8px; border-radius: 999px; margin-left: auto; }
+  .tag-crit { background: #E53935; color: #fff; }
+  .tag-high { background: #F5A623; color: #fff; }
+  .tag-med { background: #5B8DEF; color: #fff; }
+  .tag-low { background: rgba(30,58,95,0.2); color: #1E3A5F; }
+
+  .lead { font-size: 13.5px; color: rgba(30,58,95,0.72); line-height: 1.6; margin: 0 0 14px; }
+  .two-col { columns: 2; column-gap: 26px; }
+  .two-col li { break-inside: avoid; }
+  hr.soft { border: none; border-top: 1px solid rgba(30,58,95,0.12); margin: 22px 0; }
+  .foot-note { font-size: 10.5px; color: rgba(30,58,95,0.5); }
+  .persona { display: flex; gap: 7px; flex-wrap: wrap; margin: 8px 0 14px; }
+  .persona span { font-size: 10.5px; font-weight: 700; padding: 4px 10px; border-radius: 999px;
+    background: rgba(91,141,239,0.12); color: #2C4A6E; }
+</style>
+</head>
+<body>
+<doc-page size="letter" margin="0.7in">
+<div class="r-body">
+
+  <!-- ───────────── COVER ───────────── -->
+  <div class="cover">
+    <div class="eyebrow">Product & Conversion Review · Prepared as a first-time prospect</div>
+    <h1>PropertySight, judged by someone deciding whether to&nbsp;trust it, pay for it, and run their business on&nbsp;it.</h1>
+    <p class="sub">A skeptical walk through the marketing site and the mobile app — from the five-second first impression to the subscription decision and beyond. Every criticism is tied to something actually in the site copy or the app's own code and strings.</p>
+    <div class="meta">
+      <span><b>Reviewer lens:</b> licensed U.S. agent, never heard of the product</span>
+      <span><b>Surfaces:</b> marketing site + Flutter app</span>
+      <span><b>Date:</b> July 2026</span>
+    </div>
+  </div>
+
+  <!-- ───────────── VERDICT ───────────── -->
+  <div class="verdict">
+    <div class="score">
+      <div><span class="n">5.8</span><span class="d">/10</span></div>
+      <div class="lbl">Overall</div>
+    </div>
+    <p>The product underneath is genuinely differentiated — a point-your-camera-at-a-house lead scanner with honest, well-sourced data and refund-on-no-data integrity. But the funnel is <span class="rec">leaking at almost every join</span>: the site never shows a price, every download button is a dead link, there is zero social proof, and the app makes a new agent subscribe before it will reveal an owner or a value. Great engine, unfinished go-to-market.</p>
+  </div>
+  <p class="foot-note">Scores are directional judgments from one prospect's walkthrough, not statistically sampled. They exist to prioritize, not to grade.</p>
+
+  <!-- ───────────── SCORECARD ───────────── -->
+  <h2>Scorecard at a glance</h2>
+  <div class="scoregrid" id="scoregrid"></div>
+
+  <!-- ───────────── FIRST IMPRESSION ───────────── -->
+  <h2>First impression &amp; value proposition</h2>
+  <p class="lead">In five seconds I can tell this is a real-estate scouting tool, and the "point your phone at a house" hook is strong and unusual. What I <em>can't</em> tell is whether it works, what it costs, or whether anyone else uses it.</p>
+
+  <p>The hero does the most important job well: <strong>"point your phone at any house to pull the owner, the assessor value, and lead signals."</strong> That is a concrete, novel promise — most competitors make you type an address into a desktop database. The three-part "Look it up / Log it by address / Pull it up later" framing is clear and benefit-led.</p>
+
+  <p>Where it falls short of a confident buy:</p>
+  <ul>
+    <li><strong>No proof it's real.</strong> There is no screenshot gallery beyond the stylized phone mockups, no demo video, and — critically — no numbers. How many agents use it? How many properties are covered? A skeptic assumes "brand new, unproven."</li>
+    <li><strong>The "why me" is implied, not stated.</strong> The site never names the alternative it beats (a clipboard, PropStream/BatchLeads on a laptop, driving-for-dollars apps). A prospect has to construct the competitive argument themselves.</li>
+    <li><strong>No measurable benefit.</strong> Nothing quantifies the payoff — "find X more off-market deals," "cut list-building from an evening to a drive." The value is described, never sized.</li>
+  </ul>
+  <div class="persona">
+    <span>😐 5s: "Oh, a scanner for houses — interesting"</span>
+    <span>🤔 30s: "…but is this a real company?"</span>
+    <span>😟 60s: "Why won't it tell me the price?"</span>
+  </div>
+
+  <!-- ───────────── WEBSITE ───────────── -->
+  <h2>Website review</h2>
+  <p>Visually the site is clean, modern, and on-brand — a calm navy/sky-blue palette, good type rhythm, real scroll-story structure (Finds → Signals → Pricing → Activity). Craft is not the problem. <strong>Completeness and trust are.</strong> The most damaging issues:</p>
+
+  <div class="box crit">
+    <div class="t">Critical · The download buttons don't work</div>
+    Every App Store / Google Play badge and every "Download for iOS/Android" footer link points at <code>href="#"</code>. A prospect who is finally convinced literally cannot get the app. This is a 100% leak at the single most important click on the page.
+  </div>
+
+  <div class="box crit">
+    <div class="t">Critical · There is no price anywhere on the site</div>
+    The "Pricing" section explains the credit/unlock tiers but never states a dollar figure. The actual plan — <strong>$9.99/mo Starter (35 scans + 3 credits), a Pro tier (75 scans + 5 credits), top-up packs from $9.99</strong> — exists only inside the app. Forcing a prospect to install, create an account, and hit a paywall just to learn the price is a major, avoidable drop-off, and it reads as evasive.
+  </div>
+
+  <div class="box warn">
+    <div class="t">High · Zero social proof or trust signals</div>
+    No testimonials, no agent logos or brokerages, no ratings, no "as seen in," no founder/about, no case study, no FAQ. For a tool an agent would wire into their livelihood, the absence of any human validation is the difference between "interesting" and "trustworthy."
+  </div>
+
+  <p>Other website gaps that cost trust or conversion:</p>
+  <ul>
+    <li><strong>No Terms of Service and no refund policy page.</strong> Only Privacy is linked. Ironically, refund-on-unverified-data is one of the product's best trust stories (it's real, and enforced in code) — yet it's buried in one sentence instead of being a headline.</li>
+    <li><strong>Support is a lone <code>mailto:</code>.</strong> No help center, no response-time promise, no phone, no chat. A business buyer wants to know someone answers.</li>
+    <li><strong>No FAQ.</strong> The obvious objections — "Is this legal? Where's the data from? What's a credit vs a scan? What happens to my data if I stop paying?" — go unanswered, so the prospect answers them pessimistically.</li>
+    <li><strong>The Sources page is a genuine asset</strong> and should be promoted, not tucked in the nav. Naming BatchData + Google and explaining DNC flagging is exactly the credibility a skeptic wants.</li>
+  </ul>
+
+  <div class="box good">
+    <div class="t">What's working on the site</div>
+    Strong central hook; clean, professional visual design; honest data-sourcing page; the credit-tier model is explained without hype; and the "refunded if unverified" promise is a real differentiator. The bones are good — it's under-finished, not badly built.
+  </div>
+
+  <!-- ───────────── APP & ONBOARDING ───────────── -->
+  <h2>App &amp; onboarding review</h2>
+  <p class="lead">The app is where PropertySight earns its keep, and the core loop — scan a house, get records, save it, work it later — is coherent and well-instrumented. The friction is concentrated in the money model and in one retention decision that will scare people.</p>
+
+  <h3>Onboarding &amp; first-time experience</h3>
+  <ul>
+    <li><strong>Sign-in is Google/Apple only.</strong> Fast and low-friction, and guest mode was removed for a defensible anti-abuse reason — but there's <em>no email/password option</em>, which quietly excludes agents who don't want to link a personal Google/Apple identity to a work tool.</li>
+    <li><strong>Only 2 free scans before the wall.</strong> The trial grants two scans, and trial users see owner/value/financials <em>locked</em> behind "Subscribe to unlock." So a prospect's "first success" is deliberately incomplete — they scan a house and are told to pay to see what they actually came for. Time-to-real-value is effectively "after purchase," which is a hard sell on a tool you haven't proven yet.</li>
+    <li><strong>The tutorial is solid.</strong> A four-step first-launch tour plus a fuller "How it works" (8 sections) and a Signal Guide exist. Discoverability of features is above average.</li>
+  </ul>
+
+  <h3>The two-currency model is the biggest usability tax</h3>
+  <p>There are <strong>two separate currencies: "scans" and "credits."</strong> Scanning a property costs a scan; unlocking deeper data costs credits (Financials 1, Permits+Distress 1, Contact 1, Comps 2, or a 3-credit bundle). Subscriptions grant a monthly allotment of <em>both</em>, top-ups add credits, and there's even a "watch ads to earn" path and a "convert 1 credit to 5 scans" dialog. A new user cannot hold this model in their head. Every dual-currency system taxes comprehension; here it sits directly on top of the purchase decision.</p>
+
+  <div class="box crit">
+    <div class="t">Critical · Your saved finds are deleted if you stop subscribing</div>
+    The app's own strings warn ex-subscribers and trial users that <strong>their finds — photos, notes, unlocked owner data — will be deleted</strong> on a sunset timer unless they subscribe. That means the CRM an agent builds is hostage to the subscription. It's a legitimate business lever, but to a prospect evaluating trust it reads as "if I ever pause, I lose my pipeline." This will surface in reviews and word-of-mouth and suppress both adoption and referrals.
+  </div>
+
+  <div class="box warn">
+    <div class="t">Medium · "Watch ads to earn credits" undercuts the premium framing</div>
+    An ad-for-credits path on a professional lead tool cheapens it. Agents comparing this to a $99–$199/mo data platform may read the ad prompt as "consumer app," not "business tool," and trust the data less by association.
+  </div>
+
+  <h3>Smaller app observations</h3>
+  <ul class="two-col">
+    <li><strong>Refund-on-no-data is everywhere and it's excellent</strong> — every unlock refunds the credit if the record is empty. This is the app's strongest trust feature.</li>
+    <li><strong>Storage caps + grace expiry</strong> mean a heavy user can hit a wall and be pushed to "clean up or upgrade" — fine, but another place a saved find can vanish.</li>
+    <li><strong>Owner Contact requires an active subscription</strong> even if you have credits — correctly disclosed in-app now, but a surprise the first time.</li>
+    <li><strong>Errors are swallowed to a generic "Couldn't sign in."</strong> Safe, but gives a stuck user nothing to act on.</li>
+    <li><strong>Brand naming drift:</strong> internal defaults still say "Seepopi / Point. Identify. Explore." while the site is "PropertySight / Point · Scan · Discover." Make sure production never shows the old name.</li>
+    <li><strong>Property data gaps</strong> (new construction, re-parceled lots) are handled honestly with a clear "BatchData doesn't have this yet" message. Good.</li>
+  </ul>
+
+  <!-- ───────────── FUNNEL ───────────── -->
+  <h2>Customer journey — where people leave</h2>
+  <p>Mapping the funnel a real prospect walks, with an abandonment-risk estimate at each join:</p>
+  <div class="funnel">
+    <div class="fstep"><span class="stage">Site → Install</span><span class="note">Dead download links + no price + no proof. Many motivated visitors can't or won't proceed.</span><span class="risk risk-high">High</span></div>
+    <div class="fstep"><span class="stage">Install → Account</span><span class="note">Google/Apple sign-in is fast, but no email option and camera+location permissions ask a lot up front.</span><span class="risk risk-med">Medium</span></div>
+    <div class="fstep"><span class="stage">Account → First scan</span><span class="note">Must be at a property or type an address; tutorial helps. Mostly smooth.</span><span class="risk risk-low">Low</span></div>
+    <div class="fstep"><span class="stage">First scan → Real value</span><span class="note">Owner/value locked for trial users; only 2 free scans. The "aha" is gated behind payment.</span><span class="risk risk-high">High</span></div>
+    <div class="fstep"><span class="stage">Value → Subscribe</span><span class="note">Price seen for the first time in-app; two-currency model to decipher at the worst moment.</span><span class="risk risk-med">Medium</span></div>
+    <div class="fstep"><span class="stage">Subscribe → Retain</span><span class="note">Data-deletion-on-cancel and ad prompts create anxiety and churn triggers.</span><span class="risk risk-high">High</span></div>
+  </div>
+
+  <!-- ───────────── PRICING ───────────── -->
+  <h2>Pricing, trust &amp; competitive position</h2>
+  <h3>Would I subscribe with my own money?</h3>
+  <p>At <strong>$9.99/mo</strong>, the entry price is almost an impulse buy and objectively cheap next to PropStream/BatchLeads-class tools. That's a strength the site throws away by hiding it. The objections that would still stop me: <em>(1)</em> I can't judge value because I never saw the data quality before paying; <em>(2)</em> the scan/credit math makes the true cost-per-lead opaque; <em>(3)</em> the "lose your finds if you cancel" policy makes the subscription feel like a trap rather than a tool. Missing entirely: an annual option's real savings, a clear "what a typical month costs," and any money-back framing beyond the per-unlock refund.</p>
+
+  <h3>Competitive position</h3>
+  <ul>
+    <li><strong>Advantages:</strong> the camera-first, in-the-field capture is a real wedge; the price is disruptive; the sourcing transparency and DNC/refund integrity are better than much of the category.</li>
+    <li><strong>Where competitors look better:</strong> they show pricing, reviews, and demos openly; they let you keep exported data; they offer skip-tracing without a scavenger-hunt of currencies; and they have brand trust PropertySight hasn't built yet.</li>
+  </ul>
+
+  <div class="box evidence">
+    <div class="t">Trust verdict</div>
+    Would I run my business on it today? <strong>Not yet — but close.</strong> The data integrity is there; the <em>company</em> signals aren't. Fix the missing price, add proof, publish terms/refund/support, and soften the data-deletion story, and this moves from "skeptical" to "worth a try" quickly.
+  </div>
+
+  <!-- ───────────── RECOMMENDATIONS ───────────── -->
+  <h2>Prioritized recommendations</h2>
+  <p class="lead">Ordered by expected impact on downloads → accounts → subscriptions → retention. The top four are cheap and would move conversion the most.</p>
+
+  <div class="rec-card">
+    <div class="head"><span class="num">01</span><span class="title">Make the download buttons real</span><span class="tag tag-crit">Critical</span></div>
+    <div class="row"><span class="k">Problem</span><span>Every store badge and download link is <code>href="#"</code>.</span></div>
+    <div class="row"><span class="k">Impact</span><span>100% loss at the primary CTA — convinced visitors still can't install.</span></div>
+    <div class="row"><span class="k">Fix</span><span>Wire real App Store / Play URLs (or an email-capture "notify me" if pre-launch).</span></div>
+    <div class="row"><span class="k">Effort</span><span>Minutes. Highest ROI change on the site.</span></div>
+  </div>
+
+  <div class="rec-card">
+    <div class="head"><span class="num">02</span><span class="title">Put pricing on the website</span><span class="tag tag-crit">Critical</span></div>
+    <div class="row"><span class="k">Problem</span><span>No dollar figure anywhere; price is only revealed after install + account + paywall.</span></div>
+    <div class="row"><span class="k">Impact</span><span>Price-anchoring drop-off and a whiff of evasiveness; kills comparison shoppers.</span></div>
+    <div class="row"><span class="k">Fix</span><span>A real pricing block: "$9.99/mo, 35 scans + 3 credits" vs Pro, with a plain "what a credit unlocks" table and a worked "typical month" example.</span></div>
+    <div class="row"><span class="k">Effort</span><span>Low. Content + one section.</span></div>
+  </div>
+
+  <div class="rec-card">
+    <div class="head"><span class="num">03</span><span class="title">Let people prove value before paying</span><span class="tag tag-crit">Critical</span></div>
+    <div class="row"><span class="k">Problem</span><span>Trial locks owner/value/financials; only 2 free scans. The "aha" is behind the paywall.</span></div>
+    <div class="row"><span class="k">Impact</span><span>Highest single leak in the app funnel — people quit before they're convinced.</span></div>
+    <div class="row"><span class="k">Fix</span><span>Let the first 1–2 scans reveal a full result (owner + value + signals) so the prospect feels the magic once, then paywall depth/volume.</span></div>
+    <div class="row"><span class="k">Effort</span><span>Medium. A product/packaging decision, not a rebuild.</span></div>
+  </div>
+
+  <div class="rec-card">
+    <div class="head"><span class="num">04</span><span class="title">Stop threatening to delete their finds</span><span class="tag tag-high">High</span></div>
+    <div class="row"><span class="k">Problem</span><span>Ex-subscribers and trial users are warned their saved finds will be deleted.</span></div>
+    <div class="row"><span class="k">Impact</span><span>Suppresses trial-to-paid (feels like a trap) and kills referrals; fuels bad reviews.</span></div>
+    <div class="row"><span class="k">Fix</span><span>Keep finds read-only/exportable after cancel instead of deleting them; gate <em>new</em> scans and unlocks, not the history they built. Reframe as "your list is always yours."</span></div>
+    <div class="row"><span class="k">Effort</span><span>Medium. Retention-policy + copy change.</span></div>
+  </div>
+
+  <div class="rec-card">
+    <div class="head"><span class="num">05</span><span class="title">Add social proof &amp; a 30-second demo video</span><span class="tag tag-high">High</span></div>
+    <div class="row"><span class="k">Problem</span><span>No testimonials, ratings, logos, or moving demo of the scan-to-result moment.</span></div>
+    <div class="row"><span class="k">Impact</span><span>Trust ceiling on a business-critical tool; visitors default to "unproven."</span></div>
+    <div class="row"><span class="k">Fix</span><span>3–5 agent quotes, a store-rating badge once live, and a short screen-capture video of a real scan resolving to a record.</span></div>
+    <div class="row"><span class="k">Effort</span><span>Low–Medium.</span></div>
+  </div>
+
+  <div class="rec-card">
+    <div class="head"><span class="num">06</span><span class="title">Simplify or explain the scan/credit model</span><span class="tag tag-med">Medium</span></div>
+    <div class="row"><span class="k">Problem</span><span>Two currencies + conversions + ads = high comprehension tax at the buy moment.</span></div>
+    <div class="row"><span class="k">Fix</span><span>Ideally collapse to one currency; if not, a single "scans vs credits" explainer on site and a cost-per-lead readout in-app. Consider dropping the ad-for-credits path.</span></div>
+    <div class="row"><span class="k">Effort</span><span>Low (explainer) to High (unify currencies).</span></div>
+  </div>
+
+  <div class="rec-card">
+    <div class="head"><span class="num">07</span><span class="title">Publish Terms, Refund policy, FAQ &amp; real support</span><span class="tag tag-med">Medium</span></div>
+    <div class="row"><span class="k">Problem</span><span>Only Privacy is linked; support is a lone mailto; obvious objections unanswered.</span></div>
+    <div class="row"><span class="k">Fix</span><span>Add ToS + refund page, an FAQ answering legality/data/currencies/cancellation, and a help contact with a response promise. Promote the refund-on-no-data guarantee.</span></div>
+    <div class="row"><span class="k">Effort</span><span>Low–Medium.</span></div>
+  </div>
+
+  <div class="rec-card">
+    <div class="head"><span class="num">08</span><span class="title">Offer email sign-in &amp; lock the brand name</span><span class="tag tag-low">Low</span></div>
+    <div class="row"><span class="k">Problem</span><span>Google/Apple only excludes some pros; internal "Seepopi" name still lingers.</span></div>
+    <div class="row"><span class="k">Fix</span><span>Add email/password (or magic link); audit production so only "PropertySight" ever appears.</span></div>
+    <div class="row"><span class="k">Effort</span><span>Low–Medium.</span></div>
+  </div>
+
+  <hr class="soft" />
+
+  <!-- ───────────── EMOTIONAL ARC ───────────── -->
+  <h2>How the experience feels, stage by stage</h2>
+  <ul>
+    <li><strong>Landing (interested):</strong> the scan hook is genuinely cool — I lean in.</li>
+    <li><strong>Scrolling (skeptical):</strong> polished, but where's the price, the proof, the people? Doubt creeps in.</li>
+    <li><strong>Trying to download (frustrated):</strong> the button does nothing. Momentum dies.</li>
+    <li><strong>Onboarding (cautiously optimistic):</strong> quick sign-in, nice tutorial — hopeful again.</li>
+    <li><strong>First scan (deflated):</strong> "Subscribe to see owner &amp; value." I came for exactly that.</li>
+    <li><strong>Paywall (wary):</strong> cheap price, but a currency puzzle and a "lose your data if you leave" undertone.</li>
+  </ul>
+
+  <!-- ───────────── EXEC SUMMARY ───────────── -->
+  <h2>Executive summary</h2>
+  <p>PropertySight is a good product wearing an unfinished go-to-market. The core idea — turn a phone camera into a curbside property-and-owner scanner, then let an agent build a private, address-anchored follow-up list — is differentiated, timely, and genuinely useful for the driving-for-dollars and off-market-listing workflows agents already run. The engineering shows real integrity: data sources are named honestly, skip-traced contacts are flagged against the National Do Not Call registry, and unverified lookups are automatically refunded. Those are trust assets most competitors don't bother with.</p>
+
+  <p><strong>Would I use it?</strong> Yes, cautiously — the core loop is worth a try. <strong>Would I recommend it?</strong> Not yet, because I couldn't confidently vouch for a company that hides its price, can't be downloaded from its own site, and threatens to delete the data I create. <strong>Would I pay for it?</strong> At $9.99/mo, very possibly — <em>if</em> I could first see one full result and trust that my list stays mine.</p>
+
+  <p><strong>The three biggest reasons someone won't become a customer:</strong> (1) they literally can't — the download links are dead and the price is invisible until deep in the app; (2) they can't prove value before paying, because the trial locks the very data the product promises; (3) they don't trust a young brand with no reviews, no terms, thin support, and a policy that deletes their work if they stop paying.</p>
+
+  <p><strong>The three biggest strengths:</strong> (1) a differentiated, camera-first capture experience with no obvious equal at this price; (2) honest, well-sourced data with DNC compliance and refund-on-no-data baked in; (3) clean, professional design across both surfaces that signals competence.</p>
+
+  <p><strong>If I had two weeks:</strong> fix the four cheapest, highest-impact leaks — wire the download buttons, publish pricing on the site, let the first scan or two reveal a complete result, and change the retention model so canceling downgrades access rather than deleting the agent's finds. None require a rebuild; together they repair the two worst joints in the funnel (site→install and first-scan→value) and remove the loudest trust objection.</p>
+
+  <p><strong>Five highest-ROI improvements:</strong> real download links; on-site pricing with a worked example; a full-value first scan; keep-your-data-after-cancel; and social proof plus a short demo video. In that order.</p>
+
+  <p><strong>What investors would raise:</strong> Is retention propped up by hostage-taking (delete-on-cancel) rather than by love of the product — and what's true voluntary retention? Is the $9.99 price and ad-for-credits path a margin problem given per-lookup data costs from BatchData? How defensible is this if a well-funded incumbent bolts a camera onto an existing data platform? And why is measured conversion low despite a strong hook — is it demand, or the self-inflicted funnel leaks documented here?</p>
+
+  <p><strong>Estimated conversion, and the opportunity.</strong> With dead download links, no visible price, and a paywalled trial, a realistic visitor→subscriber rate today is roughly <strong>0.5–1.5%</strong> — and much of that loss is mechanical, not demand-driven. Reasoning: a strong hook likely earns a healthy visitor→intent rate, but the dead CTA and hidden price throw away a large share before install; then the locked trial sheds another big chunk before anyone experiences value. Because these are self-inflicted and cheap to fix, the upside is unusually large: simply making the buttons work, showing the price, and letting the first scan deliver a full result could plausibly lift end-to-end conversion several-fold before touching demand generation. The rare, encouraging situation here is that the product is ahead of its funnel — the fastest wins are in plumbing, not in the pitch.</p>
+
+  <p class="foot-note">Prepared as a candid, evidence-based walkthrough to guide the roadmap. Every claim above traces to specific site copy or app code/strings; happy to annotate any point with its exact source on request.</p>
+
+</div>
+</doc-page>
+
+<template id="__bundler_thumbnail">
+  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <rect width="100" height="100" fill="#0F2138"/>
+    <rect x="34" y="30" width="32" height="46" rx="5" fill="none" stroke="#5B8DEF" stroke-width="3"/>
+    <circle cx="50" cy="50" r="7" fill="none" stroke="#5B8DEF" stroke-width="3"/>
+    <path d="M50 50 L62 62" stroke="#FFC107" stroke-width="3" stroke-linecap="round"/>
+  </svg>
+</template>
+
+<script src="doc-page.js"></script>
+<script>
+  const SCORES = [
+    ['Overall Website', 5.5], ['Overall App', 6.5],
+    ['Ease of Use', 6.0], ['Visual Design', 8.0],
+    ['Professionalism', 7.0], ['Trustworthiness', 5.0],
+    ['Value Proposition', 6.5], ['Onboarding', 5.5],
+    ['Conversion Potential', 4.0], ['Subscription Experience', 5.0],
+    ['Likelihood to Recommend', 4.5], ['Likelihood to Subscribe', 6.0],
+    ['Likelihood to Continue Using', 5.5], ['Data & Sourcing Integrity', 8.5],
+  ];
+  const color = v => v >= 7 ? '#4CAF50' : v >= 5.5 ? '#5B8DEF' : v >= 4 ? '#F5A623' : '#E53935';
+  document.getElementById('scoregrid').innerHTML = SCORES.map(([n, v]) => `
+    <div class="scorerow">
+      <span class="name">${n}</span>
+      <span class="val" style="color:${color(v)}">${v.toFixed(1)}</span>
+      <span class="bar"><i style="width:${v*10}%;background:${color(v)}"></i></span>
+    </div>`).join('');
+</script>
+</body>
+</html>

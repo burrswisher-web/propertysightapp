@@ -4,148 +4,378 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Terms of Use — PropertySight</title>
-  <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      max-width: 760px;
+  <link rel="icon" type="image/png" href="assets/propertysight_icon.png" />
+  <link rel="stylesheet" href="styles.css" />
+<style>
+    .doc {
+      max-width: 820px;
       margin: 0 auto;
-      padding: 32px 20px 64px;
-      color: #222;
-      line-height: 1.7;
+      padding: 56px 24px 96px;
     }
-    h1 { font-size: 1.8rem; margin-bottom: 4px; }
-    h2 { font-size: 1.1rem; margin-top: 2rem; }
-    h3 { font-size: 1rem; margin-top: 1.2rem; }
-    p, li { font-size: 0.97rem; }
-    ul { padding-left: 1.4rem; }
-    a { color: #0070f3; }
-    .updated { color: #666; font-size: 0.88rem; margin-top: 2px; }
-    .callout { background: #f6f8fa; border-left: 3px solid #0070f3; padding: 10px 14px; margin: 1.2rem 0; }
+    .doc-head h1 {
+      font-size: clamp(32px, 4.4vw, 44px);
+      font-weight: 700;
+      letter-spacing: -0.8px;
+      line-height: 1.05;
+      margin: 0 0 6px;
+    }
+    .doc .updated {
+      color: var(--fg-faint);
+      font-size: 13px;
+      margin: 0 0 8px;
+    }
+    .doc .lead {
+      margin-top: 28px;
+      font-size: 16px;
+      line-height: 1.65;
+      color: var(--fg);
+      text-wrap: pretty;
+    }
+    .doc h2 {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      color: var(--fg);
+      margin: 56px 0 14px;
+      padding-top: 28px;
+      border-top: 1px solid var(--border);
+      scroll-margin-top: 88px;
+    }
+    .doc h3 {
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: -0.1px;
+      color: var(--fg);
+      margin: 28px 0 10px;
+    }
+    .doc p {
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--fg);
+      margin: 0 0 14px;
+    }
+    .doc ul {
+      padding-left: 0;
+      list-style: none;
+      margin: 0 0 14px;
+    }
+    .doc li {
+      position: relative;
+      padding-left: 22px;
+      margin-bottom: 9px;
+      font-size: 15px;
+      line-height: 1.65;
+      color: var(--fg-muted);
+    }
+    .doc li::before {
+      content: '';
+      position: absolute;
+      left: 4px; top: 11px;
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      opacity: 0.55;
+    }
+    .doc li strong { color: var(--fg); font-weight: 600; }
+    .doc strong { color: var(--fg); }
+    .doc a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .doc a:hover { text-decoration: underline; }
+    .doc code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.88em;
+      padding: 1px 6px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      color: var(--fg);
+    }
+    .doc em { color: var(--fg-muted); }
+
+    /* Callout used in §1 */
+    .doc .callout {
+      background: var(--accent-soft);
+      border: 1px solid rgba(91,141,239,0.3);
+      border-left: 3px solid var(--accent);
+      padding: 14px 18px;
+      border-radius: 8px;
+      margin: 18px 0;
+    }
+
+    /* §9.1 matrix table */
+    .privacy-matrix-wrap {
+      overflow-x: auto;
+      margin: 18px 0 14px;
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      background: var(--surface);
+    }
+    table.privacy-matrix {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+    table.privacy-matrix th,
+    table.privacy-matrix td {
+      border-bottom: 1px solid var(--border);
+      border-right: 1px solid var(--border);
+      padding: 12px 14px;
+      text-align: left;
+      vertical-align: top;
+      color: var(--fg-muted);
+    }
+    table.privacy-matrix th:last-child,
+    table.privacy-matrix td:last-child { border-right: 0; }
+    table.privacy-matrix tr:last-child td { border-bottom: 0; }
+    table.privacy-matrix th {
+      background: var(--bg);
+      font-weight: 600;
+      color: var(--fg);
+      font-size: 11px;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+    }
+    table.privacy-matrix td strong { color: var(--fg); font-weight: 600; }
+    table.privacy-matrix em { font-style: normal; color: var(--accent); font-weight: 600; }
+
+    .doc .back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      color: var(--fg-muted);
+      text-decoration: none;
+      margin-bottom: 28px;
+    }
+    .doc .back:hover { color: var(--fg); }
+
+    .doc-toc {
+      margin: 28px 0 8px;
+      padding: 18px 22px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+    }
+    .doc-toc-title {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.8px;
+      color: var(--fg-faint);
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .doc-toc ol {
+      columns: 2;
+      column-gap: 32px;
+      list-style: decimal inside;
+      padding: 0;
+      margin: 0;
+      color: var(--fg-muted);
+    }
+    .doc-toc li {
+      padding: 0;
+      margin: 4px 0;
+      font-size: 13px;
+      list-style: decimal inside;
+    }
+    .doc-toc li::before { display: none; }
+    .doc-toc a { color: var(--fg-muted); }
+    .doc-toc a:hover { color: var(--fg); text-decoration: none; }
+    @media (max-width: 640px) {
+      .doc-toc ol { columns: 1; }
+    }
   </style>
 </head>
 <body>
 
-<h1>Terms of Use</h1>
-<p class="updated">Last updated: July 28, 2026</p>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a class="nav-brand" href="index.html">
+        <img src="assets/propertysight_icon.png" alt="" />
+        <span class="word">Property<span class="sight">Sight</span></span>
+      </a>
+      <input type="checkbox" id="nav-toggle" class="nav-toggle" />
+      <label for="nav-toggle" class="nav-burger" aria-label="Open menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="4" y1="7" x2="20" y2="7"/>
+          <line x1="4" y1="12" x2="20" y2="12"/>
+          <line x1="4" y1="17" x2="20" y2="17"/>
+        </svg>
+      </label>
+      <div class="nav-links">
+        <a href="index.html#finds">Finds</a>
+        <a href="index.html#signals">Signals</a>
+        <a href="index.html#unlocks">Pricing</a>
+        <a href="data-sources.html">Sources</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a class="store-pill" href="https://play.google.com/store/apps/details?id=com.propertysight" target="_blank" rel="noopener">Get the app</a>
+      </div>
+    </div>
+  </nav>
 
-<p>These Terms of Use (the "Terms") are a binding agreement between you and PropertySight LLC, an Indiana limited liability company ("PropertySight", "we", "our", or "us"), governing your use of the PropertySight mobile application and related services (together, the "App"). By creating an account or using the App, you accept these Terms. Your use of the App is also governed by our <a href="/privacy.html">Privacy Policy</a>, which is incorporated into these Terms by reference. If you do not agree, do not use the App.</p>
 
-<p class="callout">The App is a research and lead-organization tool intended for U.S. real estate professionals. Property information provided through the App comes from public records and third-party data providers, is provided <strong>as-is</strong>, and is <strong>not</strong> an appraisal, a consumer report, or professional advice. See §6 and §7 — they matter.</p>
+  <main class="doc">
 
-<h2>1. Software Provider Only — Not a Brokerage</h2>
+    <a class="back" href="index.html">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="19" y1="12" x2="5" y2="12"/>
+        <polyline points="12 19 5 12 12 5"/>
+      </svg>
+      Back to home
+    </a>
+
+    <div class="doc-head">
+      <h1>Terms of Use</h1>
+      <p class="updated">Last updated: July 28, 2026</p>
+    </div>
+
+    <p class="lead">These Terms of Use (the "Terms") are a binding agreement between you and PropertySight LLC, an Indiana limited liability company ("PropertySight", "we", "our", or "us"), governing your use of the PropertySight mobile application and related services (together, the "App"). By creating an account or using the App, you accept these Terms. Your use of the App is also governed by our <a href="privacy.html">Privacy Policy</a>, which is incorporated into these Terms by reference. If you do not agree, do not use the App.</p>
+
+    <div class="callout">
+      The App is a research and lead-organization tool intended for U.S. real estate professionals. Property information provided through the App comes from public records and third-party data providers, is provided <strong>as-is</strong>, and is <strong>not</strong> an appraisal, a consumer report, or professional advice. See §6 and §7 — they matter.
+    </div>
+
+    <div class="doc-toc">
+      <div class="doc-toc-title">Contents</div>
+      <ol>
+        <li><a href="#s1">Software provider only</a></li>
+        <li><a href="#s2">Eligibility and accounts</a></li>
+        <li><a href="#s3">License to use the App</a></li>
+        <li><a href="#s4">Intellectual property</a></li>
+        <li><a href="#s5">Subscriptions, credits, payments</a></li>
+        <li><a href="#s6">Property data — no warranty</a></li>
+        <li><a href="#s7">Not a consumer reporting agency</a></li>
+        <li><a href="#s8">Owner contact data</a></li>
+        <li><a href="#s9">Data provider restrictions</a></li>
+        <li><a href="#s10">Your content; feedback</a></li>
+        <li><a href="#s11">Sharing features</a></li>
+        <li><a href="#s12">Third-party services</a></li>
+        <li><a href="#s13">Beta features</a></li>
+        <li><a href="#s14">Suspension; termination</a></li>
+        <li><a href="#s15">Disclaimers; force majeure</a></li>
+        <li><a href="#s16">Limitation of liability</a></li>
+        <li><a href="#s17">Indemnification</a></li>
+        <li><a href="#s18">Export control and sanctions</a></li>
+        <li><a href="#s19">Governing law; arbitration</a></li>
+        <li><a href="#s20">General</a></li>
+        <li><a href="#s21">Changes to these Terms</a></li>
+        <li><a href="#s22">Contact</a></li>
+      </ol>
+    </div>
+
+    <h2 id="s1">1. Software Provider Only — Not a Brokerage</h2>
 <p>PropertySight is a software provider only. We are not a real estate broker, real estate agent, appraiser, title company, attorney, lender, or financial advisor, and we do not participate in, facilitate, or represent any party in real estate transactions. Nothing in the App constitutes a recommendation to buy, sell, list, or value any property, and no fiduciary, agency, or advisory relationship is created by your use of the App.</p>
 
-<h2>2. Eligibility and Accounts</h2>
-<ul>
-  <li>You must be at least 18 years old and located in the United States to use the App. The App and its property data cover U.S. properties only.</li>
-  <li>The App is intended for use by real estate agents and other real-estate professionals for legitimate business purposes. We do not independently verify license status; you are responsible for ensuring your use complies with the rules of your profession and jurisdiction.</li>
-  <li>You sign in with a Google or Apple account and are responsible for all activity under your PropertySight account. Keep your sign-in method secure.</li>
-  <li>You may delete your account at any time in the App (More → Delete account). Deletion is described in our <a href="/privacy.html">Privacy Policy</a>.</li>
-</ul>
+    <h2 id="s2">2. Eligibility and Accounts</h2>
+<ul><li>You must be at least 18 years old and located in the United States to use the App. The App and its property data cover U.S. properties only.</li>
+      <li>The App is intended for use by real estate agents and other real-estate professionals for legitimate business purposes. We do not independently verify license status; you are responsible for ensuring your use complies with the rules of your profession and jurisdiction.</li>
+      <li>You sign in with a Google or Apple account and are responsible for all activity under your PropertySight account. Keep your sign-in method secure.</li>
+      <li>You may delete your account at any time in the App (<em>More &gt; Delete account</em>). Deletion is described in our <a href="privacy.html">Privacy Policy</a> and on our <a href="delete-account.html">account deletion page</a>.</li></ul>
 
-<h2>3. License to Use the App</h2>
-<p>We grant you a limited, non-exclusive, non-transferable, revocable license to use the App for your own internal business purposes. You may not:</p>
-<ul>
-  <li>resell, redistribute, sublicense, or provide the App or its data to third parties as a data source or service bureau;</li>
-  <li>scrape, bulk-export, or systematically harvest data from the App, or access it by any automated means;</li>
-  <li>reverse engineer, decompile, or attempt to extract source code, except where such restriction is prohibited by law;</li>
-  <li>circumvent usage limits, credit requirements, trial limits, or security controls, including by creating multiple accounts;</li>
-  <li>use the App to violate any law or third-party right.</li>
-</ul>
+    <h2 id="s3">3. License to Use the App</h2>
+<p>We grant you a limited, non-exclusive, non-transferable, revocable license to use the App for your own internal business purposes. You may not:</p><ul><li>resell, redistribute, sublicense, or provide the App or its data to third parties as a data source or service bureau;</li>
+      <li>scrape, bulk-export, or systematically harvest data from the App, or access it by any automated means;</li>
+      <li>reverse engineer, decompile, or attempt to extract source code, except where such restriction is prohibited by law;</li>
+      <li>circumvent usage limits, credit requirements, trial limits, or security controls, including by creating multiple accounts;</li>
+      <li>use the App to violate any law or third-party right.</li></ul>
 
-<h2>4. Intellectual Property; Ownership</h2>
+    <h2 id="s4">4. Intellectual Property; Ownership</h2>
 <p>The App — including its software, design, user interface, trademarks, logos, name, databases, and other content (excluding your content under §10) — is owned by PropertySight or its licensors and is protected by copyright, trademark, and other intellectual property laws. Except for the limited license in §3, no rights are granted to you. You may not copy, imitate, or use the PropertySight name, logo, or branding without our prior written permission.</p>
 
-<h2>5. Subscriptions, Credits, and Payments</h2>
-<ul>
-  <li>All purchases are processed by the Apple App Store or Google Play under their respective terms. We never see your payment card details.</li>
-  <li><strong>Subscriptions</strong> (PropertySight Basic, PropertySight Pro) are monthly and auto-renew until cancelled in your store account settings at least 24 hours before the end of the current period. Each period grants a plan-specific allotment of property scans and data credits.</li>
-  <li><strong>Credits</strong> are a limited license to access App features. They have no monetary value, are not transferable, may not be sold or exchanged, and are not redeemable for cash. Credit balances may be subject to caps. Unused scans and credits are forfeited when your subscription entitlement expires or your account is deleted, except where a store's policy requires otherwise.</li>
-  <li>Trial scans and any promotional grants are discretionary, may be limited per person (not per account), and may be changed or withdrawn.</li>
-  <li>Refunds are handled by the app stores under their policies. Where a data lookup fails on our side, the App is designed to refund the spent scan or credit automatically.</li>
-  <li>Prices and plan contents may change prospectively; changes do not affect a period you have already paid for. We may discontinue the App, any feature, or any subscription plan at any time (see §14).</li>
-</ul>
+    <h2 id="s5">5. Subscriptions, Credits, and Payments</h2>
+<ul><li>All purchases are processed by the Apple App Store or Google Play under their respective terms. We never see your payment card details.</li>
+      <li><strong>Subscriptions</strong> (PropertySight Basic, PropertySight Pro) are monthly and auto-renew until cancelled in your store account settings at least 24 hours before the end of the current period. Each period grants a plan-specific allotment of property scans and data credits.</li>
+      <li><strong>Credits</strong> are a limited license to access App features. They have no monetary value, are not transferable, may not be sold or exchanged, and are not redeemable for cash. Credit balances may be subject to caps. Unused scans and credits are forfeited when your subscription entitlement expires or your account is deleted, except where a store's policy requires otherwise.</li>
+      <li>Trial scans and any promotional grants are discretionary, may be limited per person (not per account), and may be changed or withdrawn.</li>
+      <li>Refunds are handled by the app stores under their policies. Where a data lookup fails on our side, the App is designed to refund the spent scan or credit automatically.</li>
+      <li>Prices and plan contents may change prospectively; changes do not affect a period you have already paid for. We may discontinue the App, any feature, or any subscription plan at any time (see §14).</li></ul>
 
-<h2>6. Property Data — No Warranty, Not an Appraisal</h2>
-<ul>
-  <li>Property information (including ownership, characteristics, sales history, valuations, permits, liens, and comparable sales) is sourced from public records and third-party providers and may be incomplete, outdated, or inaccurate. It is provided <strong>as-is and as-available</strong>.</li>
-  <li>Automated value estimates (AVMs), value ranges, and comparable-sales figures are statistical estimates, <strong>not appraisals</strong>, and must not be represented as appraisals. Nothing in the App is legal, financial, tax, or investment advice.</li>
-  <li>Portions of the App's output may be generated or assembled by automated or AI-based systems. Such content may be inaccurate or incomplete and should be independently verified before use.</li>
-  <li>You are responsible for independently verifying any information before relying on it or communicating it to clients or third parties.</li>
-</ul>
+    <h2 id="s6">6. Property Data — No Warranty, Not an Appraisal</h2>
+<ul><li>Property information (including ownership, characteristics, sales history, valuations, permits, liens, and comparable sales) is sourced from public records and third-party providers and may be incomplete, outdated, or inaccurate. It is provided <strong>as-is and as-available</strong>.</li>
+      <li>Automated value estimates (AVMs), value ranges, and comparable-sales figures are statistical estimates, <strong>not appraisals</strong>, and must not be represented as appraisals. Nothing in the App is legal, financial, tax, or investment advice.</li>
+      <li>Portions of the App's output may be generated or assembled by automated or AI-based systems. Such content may be inaccurate or incomplete and should be independently verified before use.</li>
+      <li>You are responsible for independently verifying any information before relying on it or communicating it to clients or third parties.</li></ul>
 
-<h2>7. Not a Consumer Reporting Agency (FCRA)</h2>
+    <h2 id="s7">7. Not a Consumer Reporting Agency (FCRA)</h2>
 <p>PropertySight is <strong>not a consumer reporting agency</strong> and the App's data is <strong>not a consumer report</strong> under the Fair Credit Reporting Act (FCRA). You must not use any data obtained through the App to determine a person's eligibility for credit, insurance, employment, housing/tenancy, government benefits, or for any other purpose covered by the FCRA or similar laws.</p>
 
-<h2>8. Owner Contact Data — Acceptable Use</h2>
-<ul>
-  <li>Owner-contact ("skip trace") lookups are available only for permissible business purposes and require you to complete an in-App attestation before each unlock. That attestation is a binding part of these Terms, and we retain attestation records as described in the Privacy Policy.</li>
-  <li>You are solely responsible for how you use contact information, including compliance with the Telephone Consumer Protection Act (TCPA), federal and state Do-Not-Call rules, CAN-SPAM, and any state law applicable to your outreach. Where you attest to an established business relationship or consent, you are responsible for the truth of that attestation.</li>
-  <li>You must not use contact data to harass, intimidate, stalk, or harm anyone, or for any FCRA-covered purpose (§7).</li>
-  <li>We may suspend or disable owner-contact features, or your access to them, at any time, including where we believe misuse has occurred.</li>
-</ul>
+    <h2 id="s8">8. Owner Contact Data — Acceptable Use</h2>
+<ul><li>Owner-contact ("skip trace") lookups are available only for permissible business purposes and require you to complete an in-App attestation before each unlock. That attestation is a binding part of these Terms, and we retain attestation records as described in the <a href="privacy.html#s7">Privacy Policy</a>.</li>
+      <li>You are solely responsible for how you use contact information, including compliance with the Telephone Consumer Protection Act (TCPA), federal and state Do-Not-Call rules, CAN-SPAM, and any state law applicable to your outreach. Where you attest to an established business relationship or consent, you are responsible for the truth of that attestation.</li>
+      <li>You must not use contact data to harass, intimidate, stalk, or harm anyone, or for any FCRA-covered purpose (§7).</li>
+      <li>We may suspend or disable owner-contact features, or your access to them, at any time, including where we believe misuse has occurred.</li></ul>
 
-<h2>9. Data Provider Restrictions</h2>
+    <h2 id="s9">9. Data Provider Restrictions</h2>
 <p>Property data may be subject to additional restrictions imposed by our data providers. We may modify, restrict, or remove data sources, data fields, or features without notice where required by our providers or their upstream sources.</p>
 
-<h2>10. Your Content; Feedback</h2>
+    <h2 id="s10">10. Your Content; Feedback</h2>
 <p>You retain ownership of the notes, photos, links, and activity entries you create in the App. You grant us a license to host, store, process, and display that content to you (and, where you use the sharing feature, to your chosen recipient) solely to operate the App. You are responsible for your content — including that your photos were taken lawfully and that your notes comply with applicable law (see also the fair-housing responsibilities that apply to your profession).</p>
-<p>If you provide suggestions, ideas, or feedback about the App, you grant PropertySight a perpetual, irrevocable, royalty-free license to use that feedback for any purpose without compensation or attribution.</p>
-<p>We respond to notices of alleged copyright infringement as required by applicable law. Send copyright notices to <a href="mailto:legal@propertysightapp.com">legal@propertysightapp.com</a>.</p>
+    <p>If you provide suggestions, ideas, or feedback about the App, you grant PropertySight a perpetual, irrevocable, royalty-free license to use that feedback for any purpose without compensation or attribution.</p>
+    <p>We respond to notices of alleged copyright infringement as required by applicable law. Send copyright notices to <a href="mailto:legal@propertysightapp.com">legal@propertysightapp.com</a>.</p>
 
-<h2>11. Sharing Features</h2>
+    <h2 id="s11">11. Sharing Features</h2>
 <p>When you share a find, the recipient receives a copy of the property snapshot as described in the App at the time of sharing. Share links are time-limited and single-use. Paid data unlocks, your notes, and your activity log are not shared. You are responsible for whom you share with.</p>
 
-<h2>12. Third-Party Services; Availability</h2>
+    <h2 id="s12">12. Third-Party Services; Availability</h2>
 <p>The App relies on third-party services including the Apple App Store, Google Play, Google sign-in and Maps, Apple sign-in, RevenueCat (purchase management), and property-data providers. Their terms govern their services. On Apple devices, Apple's standard Licensed Application End User License Agreement also applies to your use of the App and Apple is not responsible for the App or its content.</p>
-<p>Certain features require an internet connection, camera, and location access, and may not be available in all locations or at all times.</p>
+    <p>Certain features require an internet connection, camera, and location access, and may not be available in all locations or at all times.</p>
 
-<h2>13. Beta Features</h2>
+    <h2 id="s13">13. Beta Features</h2>
 <p>We may offer experimental or "beta" features. Beta features are provided "as is", may not work as intended, and may be modified or removed at any time without notice.</p>
 
-<h2>14. Suspension; Termination; Discontinuation</h2>
+    <h2 id="s14">14. Suspension; Termination; Discontinuation</h2>
 <p>We may suspend or terminate your access (with or without notice) if you breach these Terms, misuse data, abuse usage limits, or where required by law or by our data providers. We may also discontinue the App, any feature, or any subscription plan at any time, with or without notice, for business reasons; where you have paid for a subscription period, store refund policies govern any unused remainder. You may stop using the App at any time and may delete your account in the App. Sections 4, 6–10, and 15–19 survive termination.</p>
 
-<h2>15. Disclaimers; Force Majeure</h2>
+    <h2 id="s15">15. Disclaimers; Force Majeure</h2>
 <p>THE APP IS PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTIES OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, ACCURACY, AND NON-INFRINGEMENT. WE DO NOT WARRANT THAT THE APP WILL BE UNINTERRUPTED, ERROR-FREE, OR THAT DATA WILL BE ACCURATE OR COMPLETE.</p>
-<p>We will not be liable for any delay or failure to perform resulting from events beyond our reasonable control, including outages of cloud-hosting or platform providers, unavailability of government or county records systems, third-party data provider failures, internet or telecommunications failures, or acts of God.</p>
+    <p>We will not be liable for any delay or failure to perform resulting from events beyond our reasonable control, including outages of cloud-hosting or platform providers, unavailability of government or county records systems, third-party data provider failures, internet or telecommunications failures, or acts of God.</p>
 
-<h2>16. Limitation of Liability</h2>
+    <h2 id="s16">16. Limitation of Liability</h2>
 <p>TO THE MAXIMUM EXTENT PERMITTED BY LAW, PROPERTYSIGHT WILL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, OR FOR LOST PROFITS, LOST DATA, OR BUSINESS INTERRUPTION, ARISING FROM OR RELATING TO THE APP. OUR TOTAL AGGREGATE LIABILITY FOR ALL CLAIMS RELATING TO THE APP IS LIMITED TO THE GREATER OF (A) THE AMOUNTS YOU PAID US THROUGH THE APP IN THE TWELVE (12) MONTHS BEFORE THE CLAIM AROSE AND (B) ONE HUNDRED U.S. DOLLARS (US$100). Some jurisdictions do not allow certain limitations; in those jurisdictions these limits apply to the fullest extent permitted.</p>
 
-<h2>17. Indemnification</h2>
+    <h2 id="s17">17. Indemnification</h2>
 <p>You will indemnify and hold harmless PropertySight and its members, officers, and agents from claims, damages, and expenses (including reasonable attorneys' fees) arising from your misuse of the App or its data, your violation of these Terms (including §7 and §8), or your violation of any law or third-party right in connection with your use of data obtained through the App.</p>
 
-<h2>18. Export Control and Sanctions</h2>
+    <h2 id="s18">18. Export Control and Sanctions</h2>
 <p>You may not use the App in violation of U.S. export control or sanctions laws, and you represent that you are not a person or entity prohibited from receiving the App under applicable U.S. export control or sanctions laws.</p>
 
-<h2>19. Governing Law; Dispute Resolution; Arbitration</h2>
+    <h2 id="s19">19. Governing Law; Dispute Resolution; Arbitration</h2>
 <p><strong>Governing law.</strong> These Terms are governed by the laws of the State of Indiana, without regard to conflict-of-laws rules, and by the Federal Arbitration Act with respect to §19.</p>
-<p><strong>Informal resolution first.</strong> Before starting any formal proceeding, you agree to email <a href="mailto:legal@propertysightapp.com">legal@propertysightapp.com</a> describing the dispute and to attempt in good faith to resolve it informally for at least 30 days.</p>
-<p><strong>Binding arbitration.</strong> Except as provided below, any dispute, claim, or controversy arising out of or relating to these Terms or the App that is not resolved informally will be resolved by <strong>binding individual arbitration</strong> administered by the American Arbitration Association (AAA) under its Commercial Arbitration Rules or, where the AAA determines they apply to you, its Consumer Arbitration Rules (both available at <a href="https://www.adr.org">adr.org</a>). The arbitration will be conducted by a single arbitrator, in English, by videoconference or telephone, or in person in the county where you reside if you prefer. Payment of filing, administration, and arbitrator fees will be governed by the AAA's Consumer Arbitration Rules. Judgment on the award may be entered in any court of competent jurisdiction.</p>
-<p><strong>Exceptions.</strong> Either party may (a) bring an individual claim in small-claims court, and (b) seek injunctive or other equitable relief in a court of competent jurisdiction to protect intellectual property rights or to stop unauthorized use or abuse of the App or its data.</p>
-<p><strong>Class action and jury waiver.</strong> YOU AND PROPERTYSIGHT EACH WAIVE THE RIGHT TO A TRIAL BY JURY AND THE RIGHT TO PARTICIPATE IN A CLASS ACTION, CLASS ARBITRATION, OR OTHER REPRESENTATIVE PROCEEDING. Disputes may be brought only in an individual capacity, and the arbitrator may not consolidate more than one person's claims. If the class-action waiver is found unenforceable as to a particular claim, that claim (and only that claim) must proceed in court, and the remainder of §19 remains in effect.</p>
-<p><strong>30-day opt-out.</strong> You may opt out of this arbitration agreement by emailing <a href="mailto:legal@propertysightapp.com">legal@propertysightapp.com</a> within 30 days of first accepting these Terms, stating your name and the email address associated with your account and that you opt out of arbitration. Opting out does not affect any other provision of these Terms.</p>
-<p><strong>Court venue for excepted claims.</strong> For any dispute not subject to arbitration, you agree to the exclusive jurisdiction and venue of the state and federal courts located in Indiana.</p>
+    <p><strong>Informal resolution first.</strong> Before starting any formal proceeding, you agree to email <a href="mailto:legal@propertysightapp.com">legal@propertysightapp.com</a> describing the dispute and to attempt in good faith to resolve it informally for at least 30 days.</p>
+    <p><strong>Binding arbitration.</strong> Except as provided below, any dispute, claim, or controversy arising out of or relating to these Terms or the App that is not resolved informally will be resolved by <strong>binding individual arbitration</strong> administered by the American Arbitration Association (AAA) under its Commercial Arbitration Rules or, where the AAA determines they apply to you, its Consumer Arbitration Rules (both available at <a href="https://www.adr.org" target="_blank" rel="noopener">adr.org</a>). The arbitration will be conducted by a single arbitrator, in English, by videoconference or telephone, or in person in the county where you reside if you prefer. Payment of filing, administration, and arbitrator fees will be governed by the AAA's Consumer Arbitration Rules. Judgment on the award may be entered in any court of competent jurisdiction.</p>
+    <p><strong>Exceptions.</strong> Either party may (a) bring an individual claim in small-claims court, and (b) seek injunctive or other equitable relief in a court of competent jurisdiction to protect intellectual property rights or to stop unauthorized use or abuse of the App or its data.</p>
+    <p><strong>Class action and jury waiver.</strong> YOU AND PROPERTYSIGHT EACH WAIVE THE RIGHT TO A TRIAL BY JURY AND THE RIGHT TO PARTICIPATE IN A CLASS ACTION, CLASS ARBITRATION, OR OTHER REPRESENTATIVE PROCEEDING. Disputes may be brought only in an individual capacity, and the arbitrator may not consolidate more than one person's claims. If the class-action waiver is found unenforceable as to a particular claim, that claim (and only that claim) must proceed in court, and the remainder of §19 remains in effect.</p>
+    <p><strong>30-day opt-out.</strong> You may opt out of this arbitration agreement by emailing <a href="mailto:legal@propertysightapp.com">legal@propertysightapp.com</a> within 30 days of first accepting these Terms, stating your name and the email address associated with your account and that you opt out of arbitration. Opting out does not affect any other provision of these Terms.</p>
+    <p><strong>Court venue for excepted claims.</strong> For any dispute not subject to arbitration, you agree to the exclusive jurisdiction and venue of the state and federal courts located in Indiana.</p>
 
-<h2>20. General</h2>
-<ul>
-  <li><strong>Entire agreement.</strong> These Terms, together with the <a href="/privacy.html">Privacy Policy</a> and any in-App attestations, constitute the entire agreement between you and PropertySight regarding the App.</li>
-  <li><strong>Severability.</strong> If any provision is held unenforceable, the remaining provisions remain in full force and effect.</li>
-  <li><strong>No waiver.</strong> Our failure to enforce any provision is not a waiver of our right to enforce it later.</li>
-  <li><strong>Assignment.</strong> You may not assign these Terms. PropertySight may assign these Terms, including in connection with a merger, acquisition, or sale of assets.</li>
-  <li><strong>Electronic communications.</strong> By using the App, you consent to receive notices and communications from us electronically, including in-App notices and email to the address associated with your account.</li>
-</ul>
+    <h2 id="s20">20. General</h2>
+<ul><li><strong>Entire agreement.</strong> These Terms, together with the <a href="privacy.html">Privacy Policy</a> and any in-App attestations, constitute the entire agreement between you and PropertySight regarding the App.</li>
+      <li><strong>Severability.</strong> If any provision is held unenforceable, the remaining provisions remain in full force and effect.</li>
+      <li><strong>No waiver.</strong> Our failure to enforce any provision is not a waiver of our right to enforce it later.</li>
+      <li><strong>Assignment.</strong> You may not assign these Terms. PropertySight may assign these Terms, including in connection with a merger, acquisition, or sale of assets.</li>
+      <li><strong>Electronic communications.</strong> By using the App, you consent to receive notices and communications from us electronically, including in-App notices and email to the address associated with your account.</li></ul>
 
-<h2>21. Changes to These Terms</h2>
+    <h2 id="s21">21. Changes to These Terms</h2>
 <p>We may update these Terms from time to time. We will notify you of material changes by updating the "Last updated" date above and by an in-App notice on the next launch. Continued use of the App after the effective date constitutes acceptance of the revised Terms.</p>
 
-<h2>22. Contact</h2>
-<p>
-  PropertySight LLC<br />
-  Indiana, United States<br />
-  Email: <a href="mailto:legal@propertysightapp.com">legal@propertysightapp.com</a>
-</p>
+    <h2 id="s22">22. Contact</h2>
+<p>PropertySight LLC<br />Indiana, United States<br />Email: <a href="mailto:legal@propertysightapp.com">legal@propertysightapp.com</a></p>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-meta" style="margin-top:0;border-top:0;padding-top:0;">
+        <span>© 2026 PropertySight LLC. All rights reserved.</span>
+        <span>propertysightapp.com</span>
+      </div>
+    </div>
+  </footer>
+
 
 </body>
 </html>

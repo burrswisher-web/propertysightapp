@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>PropertySight — Remediation Plan</title>
+<link rel="stylesheet" href="assets/colors_and_type.css" />
+<style>
+  doc-page:not(:defined) { visibility: hidden; }
+  body { background: #E9EDF4; }
+
+  .r-body { color: #1E3A5F; line-height: 1.6; }
+  .r-body p { font-size: 12.5px; margin: 0 0 11px; }
+  .r-body h1 { font-size: 29px; letter-spacing: -0.6px; line-height: 1.1; margin: 0 0 6px; }
+  .r-body h2 {
+    font-size: 18px; letter-spacing: -0.2px; margin: 32px 0 6px;
+    padding-bottom: 7px; border-bottom: 2px solid rgba(30,58,95,0.14);
+  }
+  .r-body strong { color: #16283f; }
+  .r-body a { color: #2C6FDB; text-decoration: none; }
+  .lead { font-size: 13.5px; color: rgba(30,58,95,0.72); line-height: 1.6; margin: 0 0 14px; }
+
+  /* Cover */
+  .cover { border-bottom: 3px solid #2C4A6E; padding-bottom: 18px; margin-bottom: 6px; }
+  .cover .eyebrow {
+    font-size: 11px; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase;
+    color: #5B8DEF; margin-bottom: 13px;
+  }
+  .cover .sub { font-size: 14px; color: rgba(30,58,95,0.62); max-width: 64ch; margin-top: 9px; }
+
+  /* Goal band */
+  .goals { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 16px 0 4px; }
+  .goal { background: #0F2138; color: #fff; border-radius: 13px; padding: 15px 16px; }
+  .goal .k { font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: rgba(255,255,255,0.55); }
+  .goal .v { font-size: 22px; font-weight: 800; letter-spacing: -0.5px; margin: 5px 0 3px; }
+  .goal .v b { color: #FFC107; }
+  .goal .d { font-size: 10.5px; color: rgba(255,255,255,0.72); line-height: 1.45; }
+
+  /* Phase header */
+  .phase { display: flex; align-items: center; gap: 12px; margin: 30px 0 4px; }
+  .phase .badge { font-size: 10px; font-weight: 800; letter-spacing: 0.8px; text-transform: uppercase;
+    padding: 5px 12px; border-radius: 999px; color: #fff; white-space: nowrap; }
+  .p1 { background: #E53935; } .p2 { background: #F5A623; } .p3 { background: #5B8DEF; }
+  .phase h2 { border: none; margin: 0; padding: 0; }
+  .phase .win { margin-left: auto; font-size: 11px; font-weight: 700; color: rgba(30,58,95,0.55); }
+
+  /* Task card */
+  .task { border: 1px solid rgba(30,58,95,0.14); border-radius: 12px; padding: 0; margin: 11px 0; break-inside: avoid; overflow: hidden; }
+  .task .top { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 11px;
+    padding: 11px 15px; background: rgba(30,58,95,0.035); }
+  .task .id { font-size: 12px; font-weight: 800; color: #5B8DEF; font-variant-numeric: tabular-nums; }
+  .task .ttl { font-size: 13.5px; font-weight: 700; }
+  .task .pills { display: flex; gap: 6px; }
+  .task .pill { font-size: 9px; font-weight: 800; letter-spacing: 0.4px; text-transform: uppercase;
+    padding: 3px 8px; border-radius: 999px; white-space: nowrap; }
+  .pill-site { background: rgba(91,141,239,0.15); color: #2C4A6E; }
+  .pill-app { background: rgba(167,139,250,0.18); color: #6B3FA0; }
+  .pill-back { background: rgba(76,175,80,0.16); color: #2E7D32; }
+  .pill-shipped { background: #2E7D32; color: #fff; }
+  .pill-eff { background: rgba(30,58,95,0.1); color: #1E3A5F; }
+  .done-task { border-color: rgba(76,175,80,0.5); background: rgba(76,175,80,0.04); }
+  .task .body { padding: 11px 15px 13px; }
+  .task .line { display: grid; grid-template-columns: 92px 1fr; gap: 9px; font-size: 11.5px; margin: 4px 0; align-items: baseline; }
+  .task .line .k { font-weight: 800; color: rgba(30,58,95,0.5); text-transform: uppercase; font-size: 9px; letter-spacing: 0.5px; }
+  .task .line ul { margin: 0; padding-left: 15px; }
+  .task .line li { font-size: 11.5px; margin: 0 0 3px; line-height: 1.45; }
+  .task code { font-family: var(--font-mono); font-size: 10.5px; background: rgba(30,58,95,0.08); padding: 1px 4px; border-radius: 4px; }
+  .ac { color: #2E7D32; }
+  .ac::before { content: "✓ "; font-weight: 800; }
+
+  .note { font-size: 10.5px; color: rgba(30,58,95,0.5); }
+  .box { border-radius: 12px; padding: 13px 16px; margin: 14px 0; font-size: 12px; line-height: 1.55;
+    background: rgba(255,193,7,0.1); border-left: 4px solid #F5A623; }
+  .box .t { font-weight: 700; font-size: 11px; letter-spacing: 0.6px; text-transform: uppercase; margin-bottom: 5px; color: #B7791F; }
+
+  /* Sequence table */
+  .seq { width: 100%; border-collapse: collapse; margin: 8px 0 4px; }
+  .seq th { text-align: left; font-size: 9.5px; letter-spacing: 0.6px; text-transform: uppercase;
+    color: rgba(30,58,95,0.55); padding: 6px 8px; border-bottom: 2px solid rgba(30,58,95,0.14); }
+  .seq td { font-size: 11.5px; padding: 8px; border-bottom: 1px solid rgba(30,58,95,0.09); vertical-align: top; }
+  .seq td.w { font-weight: 700; white-space: nowrap; }
+  .seq .dot { display: inline-block; width: 8px; height: 8px; border-radius: 999px; margin-right: 6px; }
+</style>
+</head>
+<body>
+<doc-page size="letter" margin="0.7in">
+<div class="r-body">
+
+  <div class="cover">
+    <div class="eyebrow">Remediation Plan · Companion to the New-Customer Review</div>
+    <h1>Fixing the funnel: a sequenced plan to turn a strong product into a strong&nbsp;conversion.</h1>
+    <p class="sub">Every issue from the review, grouped into three phases by impact and effort. The first phase is two weeks of cheap, mechanical fixes that repair the worst leaks. Each task carries scope, the concrete changes, and a testable "done" bar.</p>
+  </div>
+
+  <div class="goals">
+    <div class="goal">
+      <div class="k">Phase 1 — 2 weeks</div>
+      <div class="v"><b>Stop the leaks</b></div>
+      <div class="d">Pricing live on the site; sell the free-scan value; message the 3-year retention as a promise.</div>
+    </div>
+    <div class="goal">
+      <div class="k">Phase 2 — weeks 3–5</div>
+      <div class="v">Build trust</div>
+      <div class="d">Social proof, demo video, Terms/Refund/FAQ, real support, promote the guarantee.</div>
+    </div>
+    <div class="goal">
+      <div class="k">Phase 3 — weeks 6–9</div>
+      <div class="v">Reduce friction</div>
+      <div class="d">Simplify the currency model, email sign-in, brand-name cleanup, drop ad-for-credits.</div>
+    </div>
+  </div>
+  <p class="note">Scope tags: <b style="color:#2C4A6E">SITE</b> = marketing site · <b style="color:#6B3FA0">APP</b> = Flutter client · <b style="color:#2E7D32">BACKEND</b> = server/billing. Effort is rough dev-time, not calendar.</p>
+
+  <div class="box">
+    <div class="t">Confirmed pricing to publish</div>
+    <strong>Starter — $9.99/mo:</strong> 35 scans + 3 credits/month. &nbsp;·&nbsp; <strong>Pro:</strong> 75 scans + 5 credits/month. &nbsp;·&nbsp; <strong>Top-up packs from $19.99.</strong> &nbsp;Unlock costs: Financials 1 · Permits+Distress 1 · Owner Contact 1 (subscriber-only) · Comps 2 · full Property Report bundle 3 (saves 1). These are the numbers Phase 1 puts on the website.
+  </div>
+
+  <!-- ───────────── PHASE 1 ───────────── -->
+  <div class="phase">
+    <span class="badge p1">Phase 1 · Critical</span>
+    <h2>Stop the leaks</h2>
+    <span class="win">Target: repair site→install and first-scan→value</span>
+  </div>
+  <p class="lead">Three changes, none a rebuild. They fix the two worst joints in the funnel and set expectations honestly. Pricing (F2) is <strong>already implemented on the site</strong> — the rest follow.</p>
+
+  <div class="task done-task">
+    <div class="top">
+      <span class="id">F2</span>
+      <span class="ttl">Publish pricing on the website</span>
+      <span class="pills"><span class="pill pill-site">Site</span><span class="pill pill-shipped">Shipped</span></span>
+    </div>
+    <div class="body">
+      <div class="line"><span class="k">Why</span><span>No dollar figure appeared anywhere; price was only revealed after install + account + paywall — reads as evasive and kills comparison shoppers.</span></div>
+      <div class="line"><span class="k">Shipped</span><span><ul>
+        <li>Added a plan block to the pricing section: <strong>Starter $9.99/mo (35 scans + 3 credits)</strong> and <strong>Pro (75 scans + 5 credits)</strong>, plus top-up packs <strong>from $19.99</strong>.</li>
+        <li>Attached per-unlock credit costs to each tier (Financials 1 · Comps 2 · Permits+Distress 1 · Owner Contact 1).</li>
+        <li>Kept the subscriber-only rule for Owner Contact inline (already true in-app).</li>
+      </ul></span></div>
+      <div class="line"><span class="k">Open</span><span><strong>Pro monthly price is a placeholder</strong> ("Pricing to confirm") until you supply the figure — everything else is live.</span></div>
+    </div>
+  </div>
+
+  <div class="task">
+    <div class="top">
+      <span class="id">F3</span>
+      <span class="ttl">Lead with what a single scan already gives — for free</span>
+      <span class="pills"><span class="pill pill-site">Site</span><span class="pill pill-app">App</span><span class="pill pill-eff">~2–3 days</span></span>
+    </div>
+    <div class="body">
+      <div class="line"><span class="k">Correction</span><span>Earlier framing that the scan is "empty until you pay" was wrong. The base scan already returns a genuinely useful record at no credit cost — that's the hook the funnel should sell, not hide.</span></div>
+      <div class="line"><span class="k">Free scan delivers</span><span><ul>
+        <li><strong>Owner of record</strong> (name on title)</li>
+        <li><strong>Verified address &amp; coordinates</strong></li>
+        <li><strong>Property facts</strong> — year built, beds, baths, square footage</li>
+        <li><strong>Last sale price + date</strong></li>
+        <li><strong>Tax / assessor market value</strong></li>
+        <li><strong>Four record-based lead signals</strong> — Vacant, Long-term owner, Absentee, Investor-owned</li>
+        <li>Your own photos, notes, and activity log against the address</li>
+      </ul></span></div>
+      <div class="line"><span class="k">Changes</span><span><ul>
+        <li>Make this "one scan, this much" payload explicit on the site and in the first-run tour — it's the proof of value before any credit is spent.</li>
+        <li>Position credits as the <em>optional depth</em> (equity, comps, distress, contact), never as the gate on the basic result.</li>
+      </ul></span></div>
+      <div class="line"><span class="k">Done</span><span class="ac">A prospect can see, before installing, the full list of what one free scan returns.</span></div>
+    </div>
+  </div>
+
+  <div class="task">
+    <div class="top">
+      <span class="id">F4</span>
+      <span class="ttl">Message the 3-year data-retention promise clearly</span>
+      <span class="pills"><span class="pill pill-app">App</span><span class="pill pill-site">Site</span><span class="pill pill-eff">~1–2 days</span></span>
+    </div>
+    <div class="body">
+      <div class="line"><span class="k">Correction</span><span>The review overstated this. Finds are <strong>not</strong> deleted at cancellation. Per the sunset policy, an ex-subscriber's data is retained for a full <strong>36 months (3 years)</strong> from the date the subscription ends, and re-subscribing at any point fully resets the clock. Trial-only accounts are held 6 months.</span></div>
+      <div class="line"><span class="k">Real issue</span><span>The problem is <em>tone</em>, not policy: the in-app banner counts down "your finds will be deleted in N months" for the last 6 months, which reads as a threat rather than the generous 3-year window it actually is.</span></div>
+      <div class="line"><span class="k">Changes</span><span><ul>
+        <li>Reframe the retention copy positively: "We keep your finds for 3 years after your plan ends — resubscribe anytime to pick up where you left off."</li>
+        <li>Soften the final-window banner from a deletion countdown to a re-activation nudge.</li>
+        <li>State the 3-year retention as a <em>trust feature</em> on the site and in the FAQ, and offer a CSV export as an extra safety net.</li>
+      </ul></span></div>
+      <div class="line"><span class="k">Done</span><span class="ac">Retention reads as a promise ("3 years, always yours to reactivate"), not a deletion threat.</span></div>
+    </div>
+  </div>
+
+  <!-- ───────────── PHASE 2 ───────────── -->
+  <div class="phase">
+    <span class="badge p2">Phase 2 · High</span>
+    <h2>Build trust</h2>
+    <span class="win">Target: raise the trust ceiling from "unproven"</span>
+  </div>
+
+  <div class="task">
+    <div class="top">
+      <span class="id">T1</span>
+      <span class="ttl">Add social proof &amp; a 30-second demo video</span>
+      <span class="pills"><span class="pill pill-site">Site</span><span class="pill pill-eff">~2–4 days</span></span>
+    </div>
+    <div class="body">
+      <div class="line"><span class="k">Changes</span><span><ul>
+        <li>3–5 real agent testimonials (name, market, headshot) placed near the hero and the pricing block.</li>
+        <li>A short screen-capture video of a live scan resolving to a real record — the moment the static mockups can't sell.</li>
+        <li>Store-rating badge once listings are live; brokerage/association logos if any.</li>
+      </ul></span></div>
+      <div class="line"><span class="k">Done</span><span class="ac">Hero and pricing each carry at least one form of third-party validation; a demo video is above the fold on mobile.</span></div>
+    </div>
+  </div>
+
+  <div class="task">
+    <div class="top">
+      <span class="id">T2</span>
+      <span class="ttl">Publish Terms, Refund policy, FAQ &amp; real support</span>
+      <span class="pills"><span class="pill pill-site">Site</span><span class="pill pill-eff">~2–3 days</span></span>
+    </div>
+    <div class="body">
+      <div class="line"><span class="k">Changes</span><span><ul>
+        <li>Add Terms of Service and a Refund policy page (only Privacy is linked today).</li>
+        <li>FAQ answering the pessimistic defaults: Is this legal? Where's the data from? What's a scan vs a credit? What happens if I cancel? Is contact data DNC-safe?</li>
+        <li>A real support path — help email with a stated response time, ideally a help center.</li>
+      </ul></span></div>
+      <div class="line"><span class="k">Done</span><span class="ac">Footer links to Terms, Refund, FAQ, and Support; every top objection has a written answer.</span></div>
+    </div>
+  </div>
+
+  <div class="task">
+    <div class="top">
+      <span class="id">T3</span>
+      <span class="ttl">Promote the refund-on-no-data guarantee</span>
+      <span class="pills"><span class="pill pill-site">Site</span><span class="pill pill-eff">~2 hr</span></span>
+    </div>
+    <div class="body">
+      <div class="line"><span class="k">Why</span><span>Refund-on-unverified is real and enforced in code — the product's best trust asset — but it's buried in one sentence.</span></div>
+      <div class="line"><span class="k">Changes</span><span><ul>
+        <li>Make "You're only charged for data we actually find" a headline near pricing, not a footnote.</li>
+        <li>Pair it with the DNC-flagging and named-sources story from the Sources page; surface Sources more prominently in the nav.</li>
+      </ul></span></div>
+      <div class="line"><span class="k">Done</span><span class="ac">The guarantee appears as a first-class selling point adjacent to the price.</span></div>
+    </div>
+  </div>
+
+  <!-- ───────────── PHASE 3 ───────────── -->
+  <div class="phase">
+    <span class="badge p3">Phase 3 · Medium</span>
+    <h2>Reduce friction</h2>
+    <span class="win">Target: ease comprehension &amp; access at the buy moment</span>
+  </div>
+
+  <div class="task">
+    <div class="top">
+      <span class="id">R1</span>
+      <span class="ttl">Simplify — or clearly explain — the scan/credit model</span>
+      <span class="pills"><span class="pill pill-app">App</span><span class="pill pill-site">Site</span><span class="pill pill-eff">Low→High</span></span>
+    </div>
+    <div class="body">
+      <div class="line"><span class="k">Why</span><span>Two currencies + conversions + ads is a heavy comprehension tax sitting right on the purchase decision.</span></div>
+      <div class="line"><span class="k">Changes</span><span><ul>
+        <li><strong>Best:</strong> collapse to a single currency so a user reasons about one balance.</li>
+        <li><strong>If not:</strong> a one-screen "scans vs credits" explainer on site + in-app, and a running <em>cost-per-lead</em> readout so spend is legible.</li>
+        <li>Remove the "convert 1 credit to 5 scans" dialog from the critical path; make conversions a settings-level action, not a checkout decision.</li>
+      </ul></span></div>
+      <div class="line"><span class="k">Done</span><span class="ac">A first-time buyer can state, in one sentence, what a scan costs and what a credit buys.</span></div>
+    </div>
+  </div>
+
+  <div class="task">
+    <div class="top">
+      <span class="id">R2</span>
+      <span class="ttl">Drop "watch ads to earn credits"</span>
+      <span class="pills"><span class="pill pill-app">App</span><span class="pill pill-eff">~1 day</span></span>
+    </div>
+    <div class="body">
+      <div class="line"><span class="k">Why</span><span>An ad-for-credits path on a professional lead tool cheapens the premium framing and, by association, the perceived data quality.</span></div>
+      <div class="line"><span class="k">Changes</span><span>Remove the ad-reward flow from the out-of-credits and top-up surfaces; if a free-credit mechanic is wanted, replace it with a referral credit (which also drives growth).</span></div>
+      <div class="line"><span class="k">Done</span><span class="ac">No ad-watching prompt anywhere in the paid experience.</span></div>
+    </div>
+  </div>
+
+  <div class="task">
+    <div class="top">
+      <span class="id">R3</span>
+      <span class="ttl">Add email sign-in &amp; lock the brand name</span>
+      <span class="pills"><span class="pill pill-app">App</span><span class="pill pill-eff">~2–3 days</span></span>
+    </div>
+    <div class="body">
+      <div class="line"><span class="k">Changes</span><span><ul>
+        <li>Add email/password or magic-link sign-in alongside Google/Apple for agents who won't link a personal identity — keep it anchored by the anti-refarm marker.</li>
+        <li>Audit production so only "PropertySight / Point · Scan · Discover" ever appears; retire the internal "Seepopi / Point. Identify. Explore." defaults.</li>
+        <li>Give the generic "Couldn't sign in" error an actionable next step (retry / contact support).</li>
+      </ul></span></div>
+      <div class="line"><span class="k">Done</span><span class="ac">A user can create an account without a Google/Apple ID; no build ever shows the old brand name.</span></div>
+    </div>
+  </div>
+
+  <!-- ───────────── SEQUENCE ───────────── -->
+  <h2>Sequence &amp; dependencies</h2>
+  <table class="seq">
+    <thead><tr><th>When</th><th>Ships</th><th>Depends on / notes</th></tr></thead>
+    <tbody>
+      <tr><td class="w"><span class="dot" style="background:#E53935"></span>Done</td><td class="w">F2</td><td>Pricing block is live on the site (Starter $9.99, Pro allotment, top-ups from $19.99). Only the Pro monthly price is still a placeholder.</td></tr>
+      <tr><td class="w"><span class="dot" style="background:#E53935"></span>Week 1</td><td class="w">F3, F4</td><td>Copy + light app work. F3 surfaces the free-scan payload; F4 reframes the retention messaging. No billing changes required.</td></tr>
+      <tr><td class="w"><span class="dot" style="background:#F5A623"></span>Weeks 3–5</td><td class="w">T1, T2, T3</td><td>T1 needs real users from Phase 1 to source testimonials. T2/T3 are copy + legal review.</td></tr>
+      <tr><td class="w"><span class="dot" style="background:#5B8DEF"></span>Weeks 6–9</td><td class="w">R1, R2, R3</td><td>R1 is the big one — scope the single-currency option first; ship the explainer as an interim. R2/R3 independent.</td></tr>
+    </tbody>
+  </table>
+
+  <h2>How we'll know it worked</h2>
+  <p>Instrument the funnel before Phase 1 so the fixes are measurable, then watch these joints:</p>
+  <ul>
+    <li><strong>Site → install</strong> (F2, F3): pricing-page views and the free-scan value story — does clear pricing plus a visible "what one scan gives" lift install intent?</li>
+    <li><strong>First scan → value felt</strong> (F3): share of new users who complete a scan and see the free record, and trial→paid conversion.</li>
+    <li><strong>Retention</strong> (F4, R1, R2): voluntary (non-coerced) renewal rate, cancellation reasons, and referral rate — does positive retention messaging reduce churn anxiety?</li>
+    <li><strong>Trust</strong> (T1–T3): pricing-page → install rate and time-on-site after proof and price are added.</li>
+  </ul>
+  <p class="note">Companion to <em>PropertySight — New-Customer Review</em>. Pricing reflects the confirmed figures: Starter $9.99/mo (35+3), Pro (75+5), top-up packs from $19.99.</p>
+
+</div>
+</doc-page>
+
+<template id="__bundler_thumbnail">
+  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <rect width="100" height="100" fill="#0F2138"/>
+    <path d="M30 52 l12 12 l28 -30" fill="none" stroke="#5B8DEF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="50" cy="50" r="30" fill="none" stroke="#FFC107" stroke-width="4" opacity="0.5"/>
+  </svg>
+</template>
+
+<script src="doc-page.js"></script>
+</body>
+</html>
